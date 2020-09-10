@@ -10,7 +10,7 @@ jobs:
   # This workflow builds the react app on a Ubuntu VM and deploys it to surge.
   DeployApp:
     # The type of runner that the job will run on
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -24,7 +24,7 @@ jobs:
     
     - name: Install Yarn
       uses: borales/actions-yarn@v2.0.0
-      with: {cmd: install}
+      with: {cmd: install --ignore-engines}
     
     - name: Build React App
       run: yarn build
