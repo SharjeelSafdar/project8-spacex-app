@@ -1321,52 +1321,68 @@ export type CoreMission = {
   flight?: Maybe<Scalars['Int']>;
 };
 
-export type HeroImageQueryVariables = Exact<{ [key: string]: never; }>;
+export type NextLaunchQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HeroImageQuery = (
+export type NextLaunchQuery = (
   { __typename?: 'Query' }
-  & { launch?: Maybe<(
+  & { launchNext?: Maybe<(
     { __typename?: 'Launch' }
-    & { links?: Maybe<(
+    & Pick<Launch, 'id' | 'mission_name' | 'launch_date_unix'>
+    & { launch_site?: Maybe<(
+      { __typename?: 'LaunchSite' }
+      & Pick<LaunchSite, 'site_name_long'>
+    )>, rocket?: Maybe<(
+      { __typename?: 'LaunchRocket' }
+      & Pick<LaunchRocket, 'rocket_name'>
+    )>, links?: Maybe<(
       { __typename?: 'LaunchLinks' }
-      & Pick<LaunchLinks, 'flickr_images'>
+      & Pick<LaunchLinks, 'mission_patch_small'>
     )> }
   )> }
 );
 
 
-export const HeroImageDocument = gql`
-    query heroImage {
-  launch(id: "14") {
+export const NextLaunchDocument = gql`
+    query nextLaunch {
+  launchNext {
+    id
+    mission_name
+    launch_date_unix
+    launch_site {
+      site_name_long
+    }
+    rocket {
+      rocket_name
+    }
     links {
-      flickr_images
+      mission_patch_small
     }
   }
 }
     `;
 
 /**
- * __useHeroImageQuery__
+ * __useNextLaunchQuery__
  *
- * To run a query within a React component, call `useHeroImageQuery` and pass it any options that fit your needs.
- * When your component renders, `useHeroImageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useNextLaunchQuery` and pass it any options that fit your needs.
+ * When your component renders, `useNextLaunchQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useHeroImageQuery({
+ * const { data, loading, error } = useNextLaunchQuery({
  *   variables: {
  *   },
  * });
  */
-export function useHeroImageQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<HeroImageQuery, HeroImageQueryVariables>) {
-        return ApolloReactHooks.useQuery<HeroImageQuery, HeroImageQueryVariables>(HeroImageDocument, baseOptions);
+export function useNextLaunchQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<NextLaunchQuery, NextLaunchQueryVariables>) {
+        return ApolloReactHooks.useQuery<NextLaunchQuery, NextLaunchQueryVariables>(NextLaunchDocument, baseOptions);
       }
-export function useHeroImageLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<HeroImageQuery, HeroImageQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<HeroImageQuery, HeroImageQueryVariables>(HeroImageDocument, baseOptions);
+export function useNextLaunchLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<NextLaunchQuery, NextLaunchQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<NextLaunchQuery, NextLaunchQueryVariables>(NextLaunchDocument, baseOptions);
         }
-export type HeroImageQueryHookResult = ReturnType<typeof useHeroImageQuery>;
-export type HeroImageLazyQueryHookResult = ReturnType<typeof useHeroImageLazyQuery>;
-export type HeroImageQueryResult = Apollo.QueryResult<HeroImageQuery, HeroImageQueryVariables>;
+export type NextLaunchQueryHookResult = ReturnType<typeof useNextLaunchQuery>;
+export type NextLaunchLazyQueryHookResult = ReturnType<typeof useNextLaunchLazyQuery>;
+export type NextLaunchQueryResult = Apollo.QueryResult<NextLaunchQuery, NextLaunchQueryVariables>;

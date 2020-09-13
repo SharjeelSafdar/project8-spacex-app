@@ -1,7 +1,0 @@
-query heroImage{
-  launch(id: "14") {
-    links {
-      flickr_images
-    }
-  }
-}
