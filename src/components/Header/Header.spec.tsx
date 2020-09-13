@@ -11,7 +11,7 @@ describe ('Tests for Header component', () => {
 
     it ('Bears SpaceX title', () => {
         const { getByText } = render(<Header />);
-        expect( getByText(/spacex/i) ).toBeInTheDocument();
+        expect( getByText(/spacex info/i) ).toBeInTheDocument();
     })
     
     it ('Contains buttons for links to other pages', () => {

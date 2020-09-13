@@ -35,7 +35,7 @@ export const Header: React.FC<{}> = () => {
         <AppBar position="static" className={classes.appBar}>
             <Toolbar>
                 <Typography variant="h4">
-                    SpaceX <span role="img" aria-label="Rocket Icon">🚀</span>
+                    SpaceX Info <span role="img" aria-label="Rocket Icon">🚀</span>
                 </Typography>
             </Toolbar>
             <Toolbar className={classes.linksToolBar}>
