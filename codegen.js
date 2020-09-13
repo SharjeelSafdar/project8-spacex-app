@@ -1,5 +1,5 @@
 module.exports = {
-    schema: [ "https://spacexdata.herokuapp.com/graphql" ],
+    schema: [ "http://api.spacex.land/graphql/" ],
     documents: ["./src/api/*.graphql"],
     overwrite: true,
     generates: {
