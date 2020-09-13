@@ -1326,20 +1326,21 @@ export type NextLaunchQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type NextLaunchQuery = (
   { __typename?: 'Query' }
-  & { launchNext?: Maybe<(
-    { __typename?: 'Launch' }
-    & Pick<Launch, 'id' | 'mission_name' | 'launch_date_unix'>
-    & { launch_site?: Maybe<(
-      { __typename?: 'LaunchSite' }
-      & Pick<LaunchSite, 'site_name_long'>
-    )>, rocket?: Maybe<(
-      { __typename?: 'LaunchRocket' }
-      & Pick<LaunchRocket, 'rocket_name'>
-    )>, links?: Maybe<(
-      { __typename?: 'LaunchLinks' }
-      & Pick<LaunchLinks, 'mission_patch_small'>
-    )> }
-  )> }
+  & {
+    launchNext?: Maybe<(
+      { __typename?: 'Launch' }
+      & Pick<Launch, 'id' | 'mission_name' | 'launch_date_unix'>
+      & {
+        launch_site?: Maybe<(
+          { __typename?: 'LaunchSite' }
+          & Pick<LaunchSite, 'site_name_long'>
+        )>, links?: Maybe<(
+          { __typename?: 'LaunchLinks' }
+          & Pick<LaunchLinks, 'mission_patch_small'>
+        )>
+      }
+    )>
+  }
 );
 
 
@@ -1351,9 +1352,6 @@ export const NextLaunchDocument = gql`
     launch_date_unix
     launch_site {
       site_name_long
-    }
-    rocket {
-      rocket_name
     }
     links {
       mission_patch_small
@@ -1378,11 +1376,11 @@ export const NextLaunchDocument = gql`
  * });
  */
 export function useNextLaunchQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<NextLaunchQuery, NextLaunchQueryVariables>) {
-        return ApolloReactHooks.useQuery<NextLaunchQuery, NextLaunchQueryVariables>(NextLaunchDocument, baseOptions);
-      }
+  return ApolloReactHooks.useQuery<NextLaunchQuery, NextLaunchQueryVariables>(NextLaunchDocument, baseOptions);
+}
 export function useNextLaunchLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<NextLaunchQuery, NextLaunchQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<NextLaunchQuery, NextLaunchQueryVariables>(NextLaunchDocument, baseOptions);
-        }
+  return ApolloReactHooks.useLazyQuery<NextLaunchQuery, NextLaunchQueryVariables>(NextLaunchDocument, baseOptions);
+}
 export type NextLaunchQueryHookResult = ReturnType<typeof useNextLaunchQuery>;
 export type NextLaunchLazyQueryHookResult = ReturnType<typeof useNextLaunchLazyQuery>;
 export type NextLaunchQueryResult = Apollo.QueryResult<NextLaunchQuery, NextLaunchQueryVariables>;
