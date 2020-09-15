@@ -1,27 +1,43 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles(() => createStyles({
-    heroImage: {
-        backgroundImage: 'url("https://farm8.staticflickr.com/7617/16855338881_69542a2fa9_o.jpg")',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        width: '100%',
-        height: '85vh'
-    },
-    shade: {
-        backgroundColor: 'rgba(0,0,0,0.8)',
-        width: '100%',
-        height: '100%',
-    },
-}));
+import { useNextLaunchQuery } from '../../api/index';
+import { Timer } from '../Timer/Timer';
+import styles from './Home.module.css';
 
 export const Home: React.FC<{}> = () => {
-    const classes = useStyles();
+    const { data, loading, error } = useNextLaunchQuery();
     return (
-        <div className={classes.heroImage} data-testid="heroImage">
-            <div className={classes.shade}></div>
+        <div className={styles.heroImage} data-testid="heroImage">
+            <div className={styles.shade}>
+                {loading 
+                    ? 'Loading...'
+                    : error
+                        ? 'Error in loading data...'
+                        : <>
+                            <div className={styles.missionDetails}>
+                                <img 
+                                    src={(data?.launchNext?.links?.mission_patch_small) 
+                                        ? data?.launchNext?.links?.mission_patch_small 
+                                        : ''} 
+                                    alt="Mission Patch"
+                                    data-testid="missionPatch"
+                                />
+                                <div>
+                                    <p data-testid="missionName">
+                                        {`Next Launch: ${data?.launchNext?.mission_name}`}
+                                    </p>
+                                    <p data-testid="missionSite">
+                                        {`From: ${data?.launchNext?.launch_site?.site_name_long}`}
+                                    </p>
+                                </div>
+                            </div>
+                            <p className={styles.remaining}>Time Remaining</p>
+                            <Timer secondsLeft={
+                                (new Date(data?.launchNext?.launch_date_unix*1000).getTime() - 
+                                new Date().getTime())/1000} 
+                            />
+                        </>
+                }
+            </div>
         </div>
     );
 }
