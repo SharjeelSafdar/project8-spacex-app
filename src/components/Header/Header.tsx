@@ -1,75 +1,41 @@
-import React from 'react';
-import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
+import React, { useState } from 'react';
 import { FaHome, FaHistory } from 'react-icons/fa';
 import { GoRocket } from 'react-icons/go';
 import { AiFillRocket } from 'react-icons/ai';
 import { BsInfoCircleFill } from 'react-icons/bs';
+import { ImMenu } from 'react-icons/im';
+import { MdClose } from 'react-icons/md';
 // Styles
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-// import blueGrey from '@material-ui/core/colors/blueGrey';
-import grey from '@material-ui/core/colors/grey';
-
-const useStyles = makeStyles((theme: Theme) => createStyles({
-    appBar: {
-        backgroundColor: grey[900],
-    },
-    icon: {
-        color: 'white',
-        marginRight: theme.spacing(0.5),
-        marginLeft: theme.spacing(0.5),
-    },
-    btnText: {
-        marginLeft: theme.spacing(1),
-    },
-    linksToolBar: {
-        marginTop: theme.spacing(-2),
-        marginBottom: theme.spacing(-1),
-        display: 'flex',
-        justifyContent: 'center',
-    },
-}));
+import styles from './Header.module.css';
 
 export const Header: React.FC<{}> = () => {
-    const classes = useStyles();
+    const [ isChecked, setCheckBox ] = useState(false)
     return (
-        <AppBar position="static" className={classes.appBar}>
-            <Toolbar>
-                <Typography variant="h4">
-                    SpaceX Info <span role="img" aria-label="Rocket Icon">🚀</span>
-                </Typography>
-            </Toolbar>
-            <Toolbar className={classes.linksToolBar}>
-                <Button data-testid="home-link" className={classes.icon}>
-                    <FaHome /> 
-                    <Typography variant="button" className={classes.btnText}>
-                        Home
-                    </Typography>
-                </Button>
-                <Button data-testid="launches-link" className={classes.icon}>
-                    <GoRocket /> 
-                    <Typography variant="button" className={classes.btnText}>
-                        Launches
-                    </Typography>
-                </Button>
-                <Button data-testid="rockets-link" className={classes.icon}>
-                    <AiFillRocket /> 
-                    <Typography variant="button" className={classes.btnText}>
-                        Rockets
-                    </Typography>
-                </Button>
-                <Button data-testid="history-link" className={classes.icon}>
-                    <FaHistory /> 
-                    <Typography variant="button" className={classes.btnText}>
-                        History
-                    </Typography>
-                </Button>
-                <Button data-testid="about-link" className={classes.icon}>
-                    <BsInfoCircleFill /> 
-                    <Typography variant="button" className={classes.btnText}>
-                        About
-                    </Typography>
-                </Button>
-            </Toolbar>
-        </AppBar>
+        <div className={styles.navBar}>
+            <h1 className={styles.logo}>
+                SpaceX Info <span role="img" aria-label="Rocket Icon">🚀</span>
+            </h1>
+            <label htmlFor="checkbox" className={styles.menuBtn}>
+                {isChecked ? <MdClose /> : <ImMenu />}
+            </label>
+            <input type="checkbox" id="checkbox" className={styles.checkbox} onChange={() => setCheckBox(prev => !prev)} />
+            <div className={styles.links}>
+                <button data-testid="home-link" className={styles.link}>
+                    <FaHome /> Home
+                </button>
+                <button data-testid="launches-link" className={styles.link}>
+                    <GoRocket /> Launches
+                </button>
+                <button data-testid="rockets-link" className={styles.link}>
+                    <AiFillRocket /> Rockets
+                </button>
+                <button data-testid="history-link" className={styles.link}>
+                    <FaHistory /> History
+                </button>
+                <button data-testid="about-link" className={styles.link}>
+                    <BsInfoCircleFill /> About
+                </button>
+            </div>
+        </div>
     );
 }

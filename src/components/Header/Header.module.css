@@ -1,0 +1,111 @@
+.navBar {
+    background-color: #263238;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 1em;
+    color: whitesmoke;
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+
+.logo {
+    user-select: none;
+}
+
+.links {
+    background-color: #263238;
+}
+
+.link {
+    cursor: pointer;
+    user-select: none;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: whitesmoke;
+    background-color: transparent;
+    padding: 10px;
+    margin: 0 5px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.link:hover {
+    background-color: #324149;
+}
+
+.menuBtn {
+    display: none;
+    font-size: 1.2rem;
+    color: whitesmoke;
+    cursor: pointer;
+    padding: 10px 12px;
+    user-select: none;
+    border: none;
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(0, -50%);
+    top: 40px;
+    left: 1em;
+    will-change: display background-color;
+}
+.menuBtn:hover {
+    background-color: #324149;
+}
+
+.checkbox {
+    display: none;
+}
+
+@media (max-width: 850px) {
+    .navBar {
+        flex-direction: column;
+    }
+    .logo {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 700px) {
+    .menuBtn {
+        display: inline;
+    }
+    .logo {
+        margin-bottom: 0;
+    }
+    .links {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        position: absolute;
+        width: 100%;
+        top: 100%;
+        padding: 0 1em;
+        transform-origin: top;
+        transform: scale(1, 0);
+        transition: transform 400ms ease-in-out;
+    }
+    /* .link {
+        opacity: 0;
+        transition: all 250ms ease-in-out;
+    } */
+    /* .checkbox:checked ~ .link {
+        opacity: 1;
+        transition: all 250ms ease-in-out;
+    } */
+    .checkbox:checked ~ .links {
+        transform: scale(1, 1);
+    }
+}
+
+@media (max-width: 400px) {
+    .logo {
+        font-size: 1.5em;
+    }
+    .menuBtn {
+        top: 33px;
+    }
+}
