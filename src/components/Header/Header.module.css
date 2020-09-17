@@ -8,7 +8,7 @@
     color: whitesmoke;
     position: sticky;
     top: 0;
-    width: 100%;
+    flex-basis: 100%;
 }
 
 .logo {

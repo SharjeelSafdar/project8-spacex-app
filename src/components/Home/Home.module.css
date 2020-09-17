@@ -21,40 +21,8 @@
     padding: 50px 0;
 }
 
-.missionDetails {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    max-width: 570px;
-    font-size: 0.8em;
-    margin: 0 30px;
-}
-
-.missionDetails img {
-    height: 100px;
-    margin-right: 20px;
-    pointer-events: none;
-    user-select: none;
-}
-
-.remaining {
-    text-align: center;
-    margin: 30px 0;
-}
-
 @media (max-height: 450px) {
     .heroImage {
         height: 450px;
-    }
-}
-
-@media (max-width: 500px) {
-    .missionDetails {
-        font-size: 0.7em;
-        margin: 0 10px;
-    }
-    .missionDetails img {
-        height: 75px;
-        margin-right: 10px;
     }
 }

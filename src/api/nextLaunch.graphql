@@ -1,6 +1,6 @@
 query nextLaunch {
-  launchNext {
-    id
+  launches(range: next) {
+    flight_number
     mission_name
     launch_date_unix
     launch_site {
