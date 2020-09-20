@@ -21,12 +21,20 @@ export const LaunchesAll = () => {
 
     return (
         <div className={styles.container}>
-            <h3 className={styles.heading}>All Launches</h3>
+            <h3 className={styles.heading}>
+                {!variables.range
+                    ? 'All Launches'
+                    : variables.range === LaunchRange.Past
+                        ? 'Past Launches'
+                        : 'Upcoming Launches'
+                }
+            </h3>
             <div className={styles.filters}>
                 Filters:
                 <button
                     data-testid="all"
                     disabled={loading}
+                    style={{background: !variables.range ? 'rgba(255, 255, 255, 0.2)' : 'transparent'}}
                     onClick={() => {
                         // if current filter is either Past or Upcoming
                         if (!!variables.range) {
@@ -40,6 +48,10 @@ export const LaunchesAll = () => {
                 <button 
                     data-testid="past"
                     disabled={loading}
+                    style={{background: variables.range && variables.range === LaunchRange.Past 
+                        ? 'rgba(255, 255, 255, 0.2)' 
+                        : 'transparent'
+                    }}
                     onClick={() => {
                         // if current filter is either Past or Upcoming
                         if (!variables.range || (variables.range && variables.range !== LaunchRange.Past)) {
@@ -56,6 +68,10 @@ export const LaunchesAll = () => {
                 <button 
                     data-testid="upcoming"
                     disabled={loading}
+                    style={{background: variables.range && variables.range === LaunchRange.Upcoming 
+                        ? 'rgba(255, 255, 255, 0.2)' 
+                        : 'transparent'
+                    }}
                     onClick={() => {
                         if (!variables.range || (variables.range && variables.range !== LaunchRange.Upcoming)) {
                             setNumLaunches(numLaunchesPerPage);
@@ -74,6 +90,10 @@ export const LaunchesAll = () => {
                 <button
                     data-testid="asc"
                     disabled={loading}
+                    style={{background: variables.order === Order.Asc 
+                        ? 'rgba(255, 255, 255, 0.2)' 
+                        : 'transparent'
+                    }}
                     onClick={() => {
                         setVariables(prev => ({
                             ...prev,
@@ -87,6 +107,10 @@ export const LaunchesAll = () => {
                 <button
                     data-testid="desc"
                     disabled={loading}
+                    style={{background: variables.order === Order.Desc 
+                        ? 'rgba(255, 255, 255, 0.2)' 
+                        : 'transparent'
+                    }}
                     onClick={() => {
                         setVariables(prev => ({
                             ...prev,
