@@ -1,0 +1,12 @@
+query allLaunchesIds(
+  $range: LaunchRange
+  $order: Order!
+) {
+  launches(
+    range: $range
+    sort: "flight_number"
+    order: $order
+  ) {
+    flight_number
+  }
+}

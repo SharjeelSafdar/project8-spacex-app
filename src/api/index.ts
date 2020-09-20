@@ -734,6 +734,20 @@ export enum CacheControlScope {
 }
 
 
+export type AllLaunchesIdsQueryVariables = Exact<{
+  range?: Maybe<LaunchRange>;
+  order: Order;
+}>;
+
+
+export type AllLaunchesIdsQuery = (
+  { __typename?: 'Query' }
+  & { launches?: Maybe<Array<Maybe<(
+    { __typename?: 'Launch' }
+    & Pick<Launch, 'flight_number'>
+  )>>> }
+);
+
 export type NextLaunchQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -752,12 +766,27 @@ export type NextLaunchQuery = (
   )>>> }
 );
 
-export type RecentLaunchesQueryVariables = Exact<{ [key: string]: never; }>;
+export type RecentLaunchesIdsQueryVariables = Exact<{
+  count?: Maybe<Scalars['Int']>;
+}>;
 
 
-export type RecentLaunchesQuery = (
+export type RecentLaunchesIdsQuery = (
   { __typename?: 'Query' }
   & { launches?: Maybe<Array<Maybe<(
+    { __typename?: 'Launch' }
+    & Pick<Launch, 'flight_number'>
+  )>>> }
+);
+
+export type SingleLaunchQueryVariables = Exact<{
+  flightNumber?: Maybe<Scalars['String']>;
+}>;
+
+
+export type SingleLaunchQuery = (
+  { __typename?: 'Query' }
+  & { launch?: Maybe<(
     { __typename?: 'Launch' }
     & Pick<Launch, 'flight_number' | 'mission_name' | 'launch_date_unix' | 'launch_success'>
     & { launch_site?: Maybe<(
@@ -767,10 +796,44 @@ export type RecentLaunchesQuery = (
       { __typename?: 'LaunchLinks' }
       & Pick<LaunchLinks, 'mission_patch_small' | 'article_link' | 'video_link'>
     )> }
-  )>>> }
+  )> }
 );
 
 
+export const AllLaunchesIdsDocument = gql`
+    query allLaunchesIds($range: LaunchRange, $order: Order!) {
+  launches(range: $range, sort: "flight_number", order: $order) {
+    flight_number
+  }
+}
+    `;
+
+/**
+ * __useAllLaunchesIdsQuery__
+ *
+ * To run a query within a React component, call `useAllLaunchesIdsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAllLaunchesIdsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAllLaunchesIdsQuery({
+ *   variables: {
+ *      range: // value for 'range'
+ *      order: // value for 'order'
+ *   },
+ * });
+ */
+export function useAllLaunchesIdsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<AllLaunchesIdsQuery, AllLaunchesIdsQueryVariables>) {
+        return ApolloReactHooks.useQuery<AllLaunchesIdsQuery, AllLaunchesIdsQueryVariables>(AllLaunchesIdsDocument, baseOptions);
+      }
+export function useAllLaunchesIdsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<AllLaunchesIdsQuery, AllLaunchesIdsQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<AllLaunchesIdsQuery, AllLaunchesIdsQueryVariables>(AllLaunchesIdsDocument, baseOptions);
+        }
+export type AllLaunchesIdsQueryHookResult = ReturnType<typeof useAllLaunchesIdsQuery>;
+export type AllLaunchesIdsLazyQueryHookResult = ReturnType<typeof useAllLaunchesIdsLazyQuery>;
+export type AllLaunchesIdsQueryResult = Apollo.QueryResult<AllLaunchesIdsQuery, AllLaunchesIdsQueryVariables>;
 export const NextLaunchDocument = gql`
     query nextLaunch {
   launches(range: next) {
@@ -811,9 +874,42 @@ export function useNextLaunchLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryH
 export type NextLaunchQueryHookResult = ReturnType<typeof useNextLaunchQuery>;
 export type NextLaunchLazyQueryHookResult = ReturnType<typeof useNextLaunchLazyQuery>;
 export type NextLaunchQueryResult = Apollo.QueryResult<NextLaunchQuery, NextLaunchQueryVariables>;
-export const RecentLaunchesDocument = gql`
-    query recentLaunches {
-  launches(range: past, limit: 3, sort: "flight_number", order: desc) {
+export const RecentLaunchesIdsDocument = gql`
+    query recentLaunchesIds($count: Int) {
+  launches(range: past, sort: "flight_number", order: desc, limit: $count) {
+    flight_number
+  }
+}
+    `;
+
+/**
+ * __useRecentLaunchesIdsQuery__
+ *
+ * To run a query within a React component, call `useRecentLaunchesIdsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useRecentLaunchesIdsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useRecentLaunchesIdsQuery({
+ *   variables: {
+ *      count: // value for 'count'
+ *   },
+ * });
+ */
+export function useRecentLaunchesIdsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<RecentLaunchesIdsQuery, RecentLaunchesIdsQueryVariables>) {
+        return ApolloReactHooks.useQuery<RecentLaunchesIdsQuery, RecentLaunchesIdsQueryVariables>(RecentLaunchesIdsDocument, baseOptions);
+      }
+export function useRecentLaunchesIdsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<RecentLaunchesIdsQuery, RecentLaunchesIdsQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<RecentLaunchesIdsQuery, RecentLaunchesIdsQueryVariables>(RecentLaunchesIdsDocument, baseOptions);
+        }
+export type RecentLaunchesIdsQueryHookResult = ReturnType<typeof useRecentLaunchesIdsQuery>;
+export type RecentLaunchesIdsLazyQueryHookResult = ReturnType<typeof useRecentLaunchesIdsLazyQuery>;
+export type RecentLaunchesIdsQueryResult = Apollo.QueryResult<RecentLaunchesIdsQuery, RecentLaunchesIdsQueryVariables>;
+export const SingleLaunchDocument = gql`
+    query singleLaunch($flightNumber: String) {
+  launch(id: $flightNumber) {
     flight_number
     mission_name
     launch_date_unix
@@ -831,26 +927,27 @@ export const RecentLaunchesDocument = gql`
     `;
 
 /**
- * __useRecentLaunchesQuery__
+ * __useSingleLaunchQuery__
  *
- * To run a query within a React component, call `useRecentLaunchesQuery` and pass it any options that fit your needs.
- * When your component renders, `useRecentLaunchesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useSingleLaunchQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSingleLaunchQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useRecentLaunchesQuery({
+ * const { data, loading, error } = useSingleLaunchQuery({
  *   variables: {
+ *      flightNumber: // value for 'flightNumber'
  *   },
  * });
  */
-export function useRecentLaunchesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<RecentLaunchesQuery, RecentLaunchesQueryVariables>) {
-        return ApolloReactHooks.useQuery<RecentLaunchesQuery, RecentLaunchesQueryVariables>(RecentLaunchesDocument, baseOptions);
+export function useSingleLaunchQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<SingleLaunchQuery, SingleLaunchQueryVariables>) {
+        return ApolloReactHooks.useQuery<SingleLaunchQuery, SingleLaunchQueryVariables>(SingleLaunchDocument, baseOptions);
       }
-export function useRecentLaunchesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<RecentLaunchesQuery, RecentLaunchesQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<RecentLaunchesQuery, RecentLaunchesQueryVariables>(RecentLaunchesDocument, baseOptions);
+export function useSingleLaunchLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleLaunchQuery, SingleLaunchQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<SingleLaunchQuery, SingleLaunchQueryVariables>(SingleLaunchDocument, baseOptions);
         }
-export type RecentLaunchesQueryHookResult = ReturnType<typeof useRecentLaunchesQuery>;
-export type RecentLaunchesLazyQueryHookResult = ReturnType<typeof useRecentLaunchesLazyQuery>;
-export type RecentLaunchesQueryResult = Apollo.QueryResult<RecentLaunchesQuery, RecentLaunchesQueryVariables>;
+export type SingleLaunchQueryHookResult = ReturnType<typeof useSingleLaunchQuery>;
+export type SingleLaunchLazyQueryHookResult = ReturnType<typeof useSingleLaunchLazyQuery>;
+export type SingleLaunchQueryResult = Apollo.QueryResult<SingleLaunchQuery, SingleLaunchQueryVariables>;

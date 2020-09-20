@@ -1,0 +1,9 @@
+query recentLaunchesIds($count: Int) {
+  launches (
+    range: past,
+    sort: "flight_number", 
+    order: desc,
+    limit: $count) {
+    flight_number
+  }
+}
