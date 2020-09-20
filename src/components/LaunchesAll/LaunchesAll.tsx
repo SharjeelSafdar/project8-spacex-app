@@ -13,6 +13,7 @@ type Varaibles = {
 export const LaunchesAll = () => {
     const [variables, setVariables] = useState<Varaibles>({ order: Order.Asc });
     const [numLaunches, setNumLaunches] = useState<number>(numLaunchesPerPage);
+    const [ showMoreBtn, setShowMoreBtn ] = useState<boolean>(true);
     const { data, loading, error } = useAllLaunchesIdsQuery({ variables });
 
     const ids = (data && data.launches)
@@ -34,7 +35,11 @@ export const LaunchesAll = () => {
                 <button
                     data-testid="all"
                     disabled={loading}
-                    style={{background: !variables.range ? 'rgba(255, 255, 255, 0.2)' : 'transparent'}}
+                    style={{
+                        background: !variables.range ? 'rgba(255, 255, 255, 0.2)' : 'transparent',
+                        color: (loading || error) ? 'grey' : 'whitesmoke',
+                        cursor: (loading || error) ? 'not-allowed' : 'pointer',
+                    }}
                     onClick={() => {
                         // if current filter is either Past or Upcoming
                         if (!!variables.range) {
@@ -48,9 +53,12 @@ export const LaunchesAll = () => {
                 <button 
                     data-testid="past"
                     disabled={loading}
-                    style={{background: variables.range && variables.range === LaunchRange.Past 
-                        ? 'rgba(255, 255, 255, 0.2)' 
-                        : 'transparent'
+                    style={{
+                        background: variables.range && variables.range === LaunchRange.Past 
+                            ? 'rgba(255, 255, 255, 0.2)' 
+                            : 'transparent',
+                        color: (loading || error) ? 'grey' : 'whitesmoke',
+                        cursor: (loading || error) ? "not-allowed" : 'pointer',
                     }}
                     onClick={() => {
                         // if current filter is either Past or Upcoming
@@ -68,9 +76,12 @@ export const LaunchesAll = () => {
                 <button 
                     data-testid="upcoming"
                     disabled={loading}
-                    style={{background: variables.range && variables.range === LaunchRange.Upcoming 
-                        ? 'rgba(255, 255, 255, 0.2)' 
-                        : 'transparent'
+                    style={{
+                        background: variables.range && variables.range === LaunchRange.Upcoming 
+                            ? 'rgba(255, 255, 255, 0.2)' 
+                            : 'transparent',
+                        color: (loading || error) ? 'grey' : 'whitesmoke',
+                        cursor: (loading || error) ? "not-allowed" : 'pointer',
                     }}
                     onClick={() => {
                         if (!variables.range || (variables.range && variables.range !== LaunchRange.Upcoming)) {
@@ -90,9 +101,12 @@ export const LaunchesAll = () => {
                 <button
                     data-testid="asc"
                     disabled={loading}
-                    style={{background: variables.order === Order.Asc 
-                        ? 'rgba(255, 255, 255, 0.2)' 
-                        : 'transparent'
+                    style={{
+                        background: variables.order === Order.Asc 
+                            ? 'rgba(255, 255, 255, 0.2)' 
+                            : 'transparent',
+                        color: (loading || error) ? 'grey' : 'whitesmoke',
+                        cursor: (loading || error) ? "not-allowed" : 'pointer',
                     }}
                     onClick={() => {
                         setVariables(prev => ({
@@ -107,9 +121,12 @@ export const LaunchesAll = () => {
                 <button
                     data-testid="desc"
                     disabled={loading}
-                    style={{background: variables.order === Order.Desc 
-                        ? 'rgba(255, 255, 255, 0.2)' 
-                        : 'transparent'
+                    style={{
+                        background: variables.order === Order.Desc 
+                            ? 'rgba(255, 255, 255, 0.2)' 
+                            : 'transparent',
+                        color: (loading || error) ? 'grey' : 'whitesmoke',
+                        cursor: (loading || error) ? "not-allowed" : 'pointer',
                     }}
                     onClick={() => {
                         setVariables(prev => ({
@@ -122,7 +139,7 @@ export const LaunchesAll = () => {
                     Descending
                 </button>
             </div>
-            <div className={styles.launches}  style={{paddingBottom: loading ? '20px' : 0}}>
+            <div className={styles.launches}  style={{paddingBottom: (loading || !!error) ? '20px' : 0}}>
                 {loading ? 'Loading launches...' : error ? 'Error fetching launches...' :
                     ids
                         .slice(0, Math.min(numLaunches, ids.length))
@@ -131,10 +148,19 @@ export const LaunchesAll = () => {
             </div>
             <button
                 data-testid="more"
-                style={{ visibility: loading ? 'hidden' : 'visible' }}
+                style={{ 
+                    visibility: loading ? 'hidden' : 'visible',
+                    color: (numLaunches >= ids.length) ? 'grey' : 'whitesmoke',
+                    cursor: (numLaunches >= ids.length) ? "not-allowed" : 'pointer',
+                    display: (showMoreBtn) ? 'block' : 'none',
+                }}
                 className={styles.more}
                 disabled={numLaunches >= ids.length}
-                onClick={() => setNumLaunches(prev => prev + numLaunchesPerPage)}
+                onClick={() => {
+                    setNumLaunches(prev => prev + numLaunchesPerPage)
+                    setShowMoreBtn(false);
+                    setTimeout(() => setShowMoreBtn(true), 250)
+                }}
             >
                 {(numLaunches >= ids.length) ? 'No more results' : 'More Results'}
             </button>

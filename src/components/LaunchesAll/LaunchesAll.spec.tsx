@@ -292,4 +292,38 @@ describe ('Tests for <LaunchesAll />', () => {
         fireEvent.click( getByTestId('upcoming') );
         expect( getByText('Upcoming Launches') ).toBeInTheDocument();
     })
+
+    it ('Cursor for filter button changes to "not allowed" during loading', () => {
+        const { getByTestId } = renderLaunchesAll();
+        expect( getByTestId('all') ).toHaveStyle('cursor: not-allowed')
+        expect( getByTestId('past') ).toHaveStyle('cursor: not-allowed')
+        expect( getByTestId('upcoming') ).toHaveStyle('cursor: not-allowed')
+        expect( getByTestId('asc') ).toHaveStyle('cursor: not-allowed')
+        expect( getByTestId('desc') ).toHaveStyle('cursor: not-allowed')
+    })
+
+    it ('Cursor for filter button changes to "pointer" after loading', async () => {
+        const { getByTestId } = renderLaunchesAll();
+        await waitForDomChange();
+
+        expect( getByTestId('all') ).toHaveStyle('cursor: pointer')
+        expect( getByTestId('past') ).toHaveStyle('cursor: pointer')
+        expect( getByTestId('upcoming') ).toHaveStyle('cursor: pointer')
+        expect( getByTestId('asc') ).toHaveStyle('cursor: pointer')
+        expect( getByTestId('desc') ).toHaveStyle('cursor: pointer')
+    })
+
+    it ('More Results button disappears for a while after it is clicked', async () => {
+        const { getByTestId } = renderLaunchesAll();
+        await waitForDomChange();
+        const moreBtn = getByTestId('more');
+        expect( moreBtn ).toHaveStyle('display: block');
+        
+        fireEvent.click( moreBtn );
+        expect( moreBtn ).toHaveStyle('display: none');
+        
+        await waitForDomChange();
+        await waitForDomChange();
+        expect( moreBtn ).toHaveStyle('display: block');
+    })
 })
