@@ -19,7 +19,7 @@ export const Timer: React.FC<Props> = ({ secondsLeft }) => {
     const days = Math.max(Math.floor( countdown / 86400 ), 0);
     const hours = Math.max(Math.floor( (countdown - days*86400) / 3600 ), 0);
     const minutes = Math.max(Math.floor( (countdown - days*86400 - hours*3600) / 60 ), 0);
-    const seconds = countdown - days*86400 - hours*3600 - minutes*60;
+    const seconds = Math.max(countdown - days*86400 - hours*3600 - minutes*60, 0);
     const timeObj: {[key: string]: number} = { days, hours, minutes, seconds };
 
     return (
