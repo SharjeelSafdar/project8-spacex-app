@@ -1,0 +1,13 @@
+query history {
+  history {
+    id
+    title
+    event_date_unix
+    flight_number
+    details
+    links {
+      article
+      wikipedia
+    }
+  }
+}
