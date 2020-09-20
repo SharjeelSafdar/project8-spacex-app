@@ -30,8 +30,8 @@ export const NextLaunch = () => {
                                 <p data-testid="missionSite">
                                     {`From: ${data?.launches && data.launches[0] &&
                                         data.launches[0].launch_site?.site_name_long} `}
-                                    <p>More details</p>
                                 </p>
+                                <p>More details</p>
                             </div>
                         </div>
                         <p className={styles.remaining}>Time Remaining</p>

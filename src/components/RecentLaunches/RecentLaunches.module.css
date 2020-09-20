@@ -1,0 +1,29 @@
+.container {
+    background-color: black;
+    color: whitesmoke;
+    padding: 40px 7%;
+}
+
+.heading {
+    font-size: 2em;
+    margin: 20px 0;
+}
+
+.launches {
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0 0 4px whitesmoke;
+    padding: 20px 20px 0 20px;
+}
+
+@media (max-width: 550px) {
+    .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .launches {
+        padding: 3px;
+        border: none;
+        box-shadow: none;
+    }
+}

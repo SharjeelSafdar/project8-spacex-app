@@ -1,6 +1,6 @@
 import React from 'react';
 import { NextLaunch } from '../NextLaunch/NextLaunch';
-// import { LaunchCard } from '../LaunchCard/LaunchCard';
+import { RecentLaunches } from '../RecentLaunches/RecentLaunches';
 // Styles
 import styles from './Home.module.css';
 
@@ -12,6 +12,7 @@ export const Home: React.FC<{}> = () => {
 					<NextLaunch />
 				</div>
 			</div>
+			<RecentLaunches />
 		</>
 	);
 }

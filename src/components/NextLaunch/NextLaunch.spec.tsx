@@ -36,15 +36,15 @@ describe('Tests for <NextLaunch /> component', () => {
         const days = Math.max(Math.floor(secondsLeft / 86400), 0);
         const hours = Math.max(Math.floor((secondsLeft - days * 86400) / 3600), 0);
         const minutes = Math.max(Math.floor((secondsLeft - days * 86400 - hours * 3600) / 60), 0);
-        const seconds = secondsLeft - days * 86400 - hours * 3600 - minutes * 60;
+        const seconds = Math.max(secondsLeft - days * 86400 - hours * 3600 - minutes * 60, 0);
 
-        expect(getByText(`${(days < 10) ? `0${days}` : days}`)).toBeInTheDocument();
-        expect(getByText(/days/i)).toBeInTheDocument();
-        expect(getByText(`${(hours < 10) ? `0${hours}` : hours}`)).toBeInTheDocument();
-        expect(getByText(/hours/i)).toBeInTheDocument();
-        expect(getByText(`${(minutes < 10) ? `0${minutes}` : minutes}`)).toBeInTheDocument();
-        expect(getByText(/minutes/i)).toBeInTheDocument();
-        expect(getByText(`${(seconds < 10) ? `0${seconds}` : seconds}`)).toBeInTheDocument();
-        expect(getByText(/seconds/i)).toBeInTheDocument();
+        expect( getByTestId('days') ).toHaveTextContent(`${(days < 10) ? `0${days}` : days}`)
+        expect( getByText(/days/i) ).toBeInTheDocument();
+        expect( getByTestId('hours') ).toHaveTextContent(`${(hours < 10) ? `0${hours}` : hours}`)
+        expect( getByText(/hours/i) ).toBeInTheDocument();
+        expect( getByTestId('minutes') ).toHaveTextContent(`${(minutes < 10) ? `0${minutes}` : minutes}`)
+        expect( getByText(/minutes/i) ).toBeInTheDocument();
+        expect( getByTestId('seconds') ).toHaveTextContent(`${(seconds < 10) ? `0${seconds}` : seconds}`)
+        expect( getByText(/seconds/i) ).toBeInTheDocument();
     })
 })
