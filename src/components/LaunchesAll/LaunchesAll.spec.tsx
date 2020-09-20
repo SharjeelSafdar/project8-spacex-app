@@ -17,7 +17,7 @@ describe ('Tests for <LaunchesAll />', () => {
         renderLaunchesAll();
     })
 
-    it ('Has a heading "Launches"', () => {
+    it ('Has an initial heading "All Launches"', () => {
         const { getByText } = renderLaunchesAll();
 
         expect( getByText('All Launches') ).toBeInTheDocument();
@@ -275,5 +275,21 @@ describe ('Tests for <LaunchesAll />', () => {
         [ 103, 115 ].forEach(
             flightNum => expect( getByText(`Flight #${flightNum}`) ).toBeInTheDocument()
         );
+    })
+
+    it ('Has a heading "Past Launches" when "Past" filter is appiled', async () => {
+        const { getByText, getByTestId } = renderLaunchesAll();
+        await waitForDomChange();
+
+        fireEvent.click( getByTestId('past') );
+        expect( getByText('Past Launches') ).toBeInTheDocument();
+    })
+
+    it ('Has a heading "Upcoming Launches" when "Upcoming" filter is appiled', async () => {
+        const { getByText, getByTestId } = renderLaunchesAll();
+        await waitForDomChange();
+
+        fireEvent.click( getByTestId('upcoming') );
+        expect( getByText('Upcoming Launches') ).toBeInTheDocument();
     })
 })
