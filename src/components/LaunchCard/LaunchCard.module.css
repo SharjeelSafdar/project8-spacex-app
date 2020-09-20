@@ -1,0 +1,97 @@
+.container {
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0 0 4px whitesmoke;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.missionPatch {
+    width: 110px;
+    height: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.missionPatch img {
+    width: 95%;
+    user-select: none;
+    cursor: pointer;
+    transition: transform 250ms ease-in-out;
+}
+.missionPatch img:hover {
+    transform: scale(1.1);
+}
+
+.launchData {
+    flex-basis: 100%;
+}
+
+.numAndStatus {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 100%;
+}
+
+.numAndStatus p:last-of-type {
+    margin: 0 auto;
+}
+
+.success {
+    color: #6ad66a;
+}
+.failure {
+    color: #f79287;
+}
+
+.links {
+    display: flex;
+    flex-basis: 100%;
+}
+.links span {
+    margin-left: 15px;
+    font-size: 0.8em;
+    user-select: none;
+}
+.links span:first-of-type {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.detailsLink {
+    color: #00f;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.videoLink, .articleLink {
+    font-size: 1.4em;
+    text-decoration: none;
+}
+.videoLink {
+    color: #ff0000;
+}
+.articleLink {
+    color: whitesmoke;
+}
+
+/* Media Queries */
+@media (max-width: 700px) {
+    .container {
+        flex-direction: column;
+    }
+    .missionPatch {
+        margin: 0 0 20px 0;
+        width: auto;
+        height: 200px;
+        flex-grow: 1;
+    }
+    .missionPatch img {
+        height: 95%;
+        width: auto;
+    }
+}
