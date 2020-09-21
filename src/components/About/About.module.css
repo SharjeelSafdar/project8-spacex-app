@@ -1,0 +1,67 @@
+.container {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: whitesmoke;
+    padding: 150px 7%;
+}
+
+.logo {
+    margin: auto;
+    flex-basis: content;
+    width: 70vw;
+}
+.year, .details, .logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.details {
+    padding: 0 7%;
+}
+
+.persons {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+}
+
+.person {
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0 0 4px whitesmoke;
+    padding-bottom: 20px;
+    width: fit-content;
+    overflow: hidden;
+}
+.person h4, .person p {
+    text-align: center;
+}
+
+@media (max-width: 1150px) {
+    .person img {
+        height: 300px;
+    }
+}
+
+@media (max-width: 850px) {
+    .person img {
+        height: 400px;
+    }
+    .persons {
+        flex-direction: column;
+        align-items: center;
+    }
+    .person {
+        margin: 15px 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .person img {
+        height: 300px;
+    }
+    .logo {
+        width: 80vw;
+    }
+}

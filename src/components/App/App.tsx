@@ -3,7 +3,8 @@ import { Header } from '../Header/Header';
 // import { Home } from '../Home/Home';
 // import { LaunchesAll } from '../LaunchesAll/LaunchesAll';
 // import { History } from '../History/History';
-import { Rockets } from '../Rockets/Rockets';
+// import { Rockets } from '../Rockets/Rockets';
+import { About } from '../About/About';
 
 const App = () => {
   return (
@@ -12,7 +13,8 @@ const App = () => {
       {/* <Home /> */}
       {/* <LaunchesAll /> */}
       {/* <History /> */}
-      <Rockets />
+      {/* <Rockets /> */}
+      <About />
     </>
   );
 }
