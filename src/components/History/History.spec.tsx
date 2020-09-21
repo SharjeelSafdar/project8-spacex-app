@@ -29,7 +29,7 @@ describe ('Tests for <History />', () => {
         const firstHistoryItem = getByTestId('historyItem1');
 
         expect(firstHistoryItem).toHaveTextContent(/Falcon 1 Makes History/i);
-        expect(firstHistoryItem).toHaveTextContent(/Date: Thu, 15 Jan 1970 03:37:23 GMT/i);
+        expect(firstHistoryItem).toHaveTextContent(/Date: Sun, 28 Sep 2008 23:15:00 GMT/i);
         expect(firstHistoryItem).toHaveTextContent(/Details: Falcon 1 becomes the first privately developed liquid fuel rocket to reach Earth orbit/i);
         expect(firstHistoryItem).toHaveTextContent(/Flight Number: 4/i);
         expect( getByTestId('article1') ).toBeInTheDocument();
