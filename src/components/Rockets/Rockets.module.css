@@ -1,0 +1,62 @@
+.container {
+    background-color: black;
+    color: whitesmoke;
+    padding: 40px 7%;
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+}
+
+.heading {
+    font-size: 2em;
+    margin: 20px 0;
+}
+
+.rockets {
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0 0 4px whitesmoke;
+    padding: 20px 20px 0;
+}
+
+.rocket {
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0 0 4px whitesmoke;
+    padding: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.links {
+    display: flex;
+    margin-top: 10px;
+}
+.wikiLink {
+    margin-left: auto;
+    font-size: 1.4em;
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+@media (max-width: 550px) {
+    .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .rockets {
+        padding: 3px;
+        border: none;
+        box-shadow: none;
+    }
+    .heading {
+        margin-left: 15px;
+    }
+}
