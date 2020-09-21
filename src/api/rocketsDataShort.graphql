@@ -1,0 +1,10 @@
+query RocketsDataShort {
+  rockets {
+    rocket_id
+    rocket_name
+    active
+    first_flight
+    description
+    wikipedia 
+  }
+}

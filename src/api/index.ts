@@ -794,6 +794,17 @@ export type RecentLaunchesIdsQuery = (
   )>>> }
 );
 
+export type RocketsDataShortQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type RocketsDataShortQuery = (
+  { __typename?: 'Query' }
+  & { rockets?: Maybe<Array<Maybe<(
+    { __typename?: 'Rocket' }
+    & Pick<Rocket, 'rocket_id' | 'rocket_name' | 'active' | 'first_flight' | 'description' | 'wikipedia'>
+  )>>> }
+);
+
 export type SingleLaunchQueryVariables = Exact<{
   flightNumber?: Maybe<Scalars['String']>;
 }>;
@@ -962,6 +973,43 @@ export function useRecentLaunchesIdsLazyQuery(baseOptions?: ApolloReactHooks.Laz
 export type RecentLaunchesIdsQueryHookResult = ReturnType<typeof useRecentLaunchesIdsQuery>;
 export type RecentLaunchesIdsLazyQueryHookResult = ReturnType<typeof useRecentLaunchesIdsLazyQuery>;
 export type RecentLaunchesIdsQueryResult = Apollo.QueryResult<RecentLaunchesIdsQuery, RecentLaunchesIdsQueryVariables>;
+export const RocketsDataShortDocument = gql`
+    query RocketsDataShort {
+  rockets {
+    rocket_id
+    rocket_name
+    active
+    first_flight
+    description
+    wikipedia
+  }
+}
+    `;
+
+/**
+ * __useRocketsDataShortQuery__
+ *
+ * To run a query within a React component, call `useRocketsDataShortQuery` and pass it any options that fit your needs.
+ * When your component renders, `useRocketsDataShortQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useRocketsDataShortQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useRocketsDataShortQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<RocketsDataShortQuery, RocketsDataShortQueryVariables>) {
+        return ApolloReactHooks.useQuery<RocketsDataShortQuery, RocketsDataShortQueryVariables>(RocketsDataShortDocument, baseOptions);
+      }
+export function useRocketsDataShortLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<RocketsDataShortQuery, RocketsDataShortQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<RocketsDataShortQuery, RocketsDataShortQueryVariables>(RocketsDataShortDocument, baseOptions);
+        }
+export type RocketsDataShortQueryHookResult = ReturnType<typeof useRocketsDataShortQuery>;
+export type RocketsDataShortLazyQueryHookResult = ReturnType<typeof useRocketsDataShortLazyQuery>;
+export type RocketsDataShortQueryResult = Apollo.QueryResult<RocketsDataShortQuery, RocketsDataShortQueryVariables>;
 export const SingleLaunchDocument = gql`
     query singleLaunch($flightNumber: String) {
   launch(id: $flightNumber) {
