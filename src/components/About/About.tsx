@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './About.module.css';
-import logo from '../../spacexLogo.jpg';
-import elon from '../../elon.jpg';
-import shotwell from '../../shotwell.jpg';
-import tom from '../../tom.jpg';
+import logo from '../../images/spacexLogo.jpg';
+import elon from '../../images/elon.jpg';
+import shotwell from '../../images/shotwell.jpg';
+import tom from '../../images/tom.jpg';
 
 const persons = [
     { name: 'Elon Musk', title: 'Founder, CEO, CTO', image: elon },
