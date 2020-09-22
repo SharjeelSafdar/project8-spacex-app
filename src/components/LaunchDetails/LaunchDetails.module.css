@@ -1,0 +1,73 @@
+.container {
+    background-color: black;
+    color: whitesmoke;
+    padding: 40px 7%;
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+}
+
+.patchAndTitle {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+}
+.patchAndTitle img {
+    height: 100px;
+}
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+}
+.heading {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+.title div {
+    display: flex;
+    flex-direction: row;
+}
+.title div p:last-of-type {
+    margin: 0 auto;
+}
+.success {
+    color: #6ad66a;
+}
+.failure {
+    color: #f79287;
+}
+
+table {
+    margin-bottom: 50px;
+    border-spacing: 0;
+}
+.c1 {
+    min-width: 125px;
+}
+tr:nth-child(odd) {
+    background-color: rgba(255,255,255,0.1);
+    border-collapse: collapse;
+}
+
+.videoLink, .articleLink, .wikiLink {
+    text-decoration: none;
+    font-size: 1.3em;
+    margin-right: 15px;
+}
+.videoLink {
+    color: #ff0000;
+}
+.wikiLink, .articleLink {
+    color: whitesmoke;
+}
+
+.images {
+    font-size: 1.4em;
+    font-weight: 700;
+}
+.image {
+    margin: 20px 0;
+    width: 100%;
+}

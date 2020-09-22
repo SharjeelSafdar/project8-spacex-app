@@ -7,6 +7,7 @@ import {
     LaunchRange,
     HistoryDocument,
     RocketsDataShortDocument,
+    LaunchDetailsDocument,
 } from './index';
 
 export const mockedResponses = [
@@ -1612,6 +1613,47 @@ export const mockedResponses = [
                         "wikipedia": "https://en.wikipedia.org/wiki/SpaceX_Starship"
                     }
                 ]
+            }
+        }
+    },
+    {
+        request: {
+            query: LaunchDetailsDocument,
+            variables: {
+                flightNumber: "101",
+            },
+        },
+        result: {
+            "data": {
+                "launch": {
+                    "mission_name": "SAOCOM 1B, GNOMES-1, Tyvak-0172",
+                    "flight_number": 101,
+                    "upcoming": false,
+                    "launch_success": true,
+                    "static_fire_date_unix": null,
+                    "launch_date_unix": 1598829480,
+                    "launch_site": {
+                        "site_name_long": "Cape Canaveral Air Force Station Space Launch Complex 40"
+                    },
+                    "details": "SpaceX's Falcon 9 will launch the second of the two satellite SAOCOM 1 satellites into a sun-synchronous polar orbit from SLC-40, Cape Canaveral AFS. SAOCOM 1B is a synthetic aperture radar Earth observation satellite to support disaster management. The SAOCOM spacecraft are operated by CONAE, the Argentinian National Space Activities Commission, and are built by INVAP. This mission is also expected to include rideshare payloads Sequoia, and GNOMES-1. This will be the first polar launch from the Space Coast in 60 years. The launch azimuth will be southward and the booster will land at LZ-1.",
+                    "rocket": {
+                        "rocket_id": "falcon9",
+                        "rocket_name": "Falcon 9"
+                    },
+                    "links": {
+                        "mission_patch_small": "https://images2.imgbox.com/e7/f6/v0zFOhZE_o.png",
+                        "article_link": "https://spaceflightnow.com/2020/08/31/spacex-launches-first-polar-orbit-mission-from-florida-in-decades/",
+                        "wikipedia": "https://en.wikipedia.org/wiki/SAOCOM",
+                        "video_link": "https://youtu.be/P-gLOsDjE3E",
+                        "flickr_images": [
+                            "https://live.staticflickr.com/65535/50291453997_aa715950e7_o.jpg",
+                            "https://live.staticflickr.com/65535/50291306296_85b6ff12a2_o.jpg",
+                            "https://live.staticflickr.com/65535/50291306061_2f9e350a85_o.jpg",
+                            "https://live.staticflickr.com/65535/50291306216_4fd44c261e_o.jpg",
+                            "https://live.staticflickr.com/65535/50291306346_136d3dce7b_o.jpg"
+                        ]
+                    }
+                }
             }
         }
     },

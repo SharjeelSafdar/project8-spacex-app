@@ -1,0 +1,25 @@
+query launchDetails($flightNumber: String!) {
+  launch(id: $flightNumber) {
+    mission_name
+    flight_number
+    upcoming
+    launch_success
+    static_fire_date_unix
+    launch_date_unix
+    launch_site {
+      site_name_long
+    }
+    details
+    rocket {
+      rocket_id
+      rocket_name
+    }
+    links {
+      mission_patch_small
+      article_link
+      wikipedia
+      video_link
+      flickr_images
+    }
+  }
+}

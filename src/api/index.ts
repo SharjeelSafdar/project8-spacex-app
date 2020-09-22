@@ -763,6 +763,29 @@ export type HistoryQuery = (
   )>>> }
 );
 
+export type LaunchDetailsQueryVariables = Exact<{
+  flightNumber: Scalars['String'];
+}>;
+
+
+export type LaunchDetailsQuery = (
+  { __typename?: 'Query' }
+  & { launch?: Maybe<(
+    { __typename?: 'Launch' }
+    & Pick<Launch, 'mission_name' | 'flight_number' | 'upcoming' | 'launch_success' | 'static_fire_date_unix' | 'launch_date_unix' | 'details'>
+    & { launch_site?: Maybe<(
+      { __typename?: 'LaunchSite' }
+      & Pick<LaunchSite, 'site_name_long'>
+    )>, rocket?: Maybe<(
+      { __typename?: 'LaunchRocket' }
+      & Pick<LaunchRocket, 'rocket_id' | 'rocket_name'>
+    )>, links?: Maybe<(
+      { __typename?: 'LaunchLinks' }
+      & Pick<LaunchLinks, 'mission_patch_small' | 'article_link' | 'wikipedia' | 'video_link' | 'flickr_images'>
+    )> }
+  )> }
+);
+
 export type NextLaunchQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -900,6 +923,59 @@ export function useHistoryLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHook
 export type HistoryQueryHookResult = ReturnType<typeof useHistoryQuery>;
 export type HistoryLazyQueryHookResult = ReturnType<typeof useHistoryLazyQuery>;
 export type HistoryQueryResult = Apollo.QueryResult<HistoryQuery, HistoryQueryVariables>;
+export const LaunchDetailsDocument = gql`
+    query launchDetails($flightNumber: String!) {
+  launch(id: $flightNumber) {
+    mission_name
+    flight_number
+    upcoming
+    launch_success
+    static_fire_date_unix
+    launch_date_unix
+    launch_site {
+      site_name_long
+    }
+    details
+    rocket {
+      rocket_id
+      rocket_name
+    }
+    links {
+      mission_patch_small
+      article_link
+      wikipedia
+      video_link
+      flickr_images
+    }
+  }
+}
+    `;
+
+/**
+ * __useLaunchDetailsQuery__
+ *
+ * To run a query within a React component, call `useLaunchDetailsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLaunchDetailsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLaunchDetailsQuery({
+ *   variables: {
+ *      flightNumber: // value for 'flightNumber'
+ *   },
+ * });
+ */
+export function useLaunchDetailsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<LaunchDetailsQuery, LaunchDetailsQueryVariables>) {
+        return ApolloReactHooks.useQuery<LaunchDetailsQuery, LaunchDetailsQueryVariables>(LaunchDetailsDocument, baseOptions);
+      }
+export function useLaunchDetailsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<LaunchDetailsQuery, LaunchDetailsQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<LaunchDetailsQuery, LaunchDetailsQueryVariables>(LaunchDetailsDocument, baseOptions);
+        }
+export type LaunchDetailsQueryHookResult = ReturnType<typeof useLaunchDetailsQuery>;
+export type LaunchDetailsLazyQueryHookResult = ReturnType<typeof useLaunchDetailsLazyQuery>;
+export type LaunchDetailsQueryResult = Apollo.QueryResult<LaunchDetailsQuery, LaunchDetailsQueryVariables>;
 export const NextLaunchDocument = gql`
     query nextLaunch {
   launches(range: next) {
