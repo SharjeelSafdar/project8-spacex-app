@@ -42,7 +42,7 @@ export const LaunchDetails = () => {
                             </div>
                         </div>
                     </div>
-                    <table>
+                    <table><tbody>
                         <tr>
                             <td className={styles.c1}>Static Fire Date</td>
                             <td className={styles.c2} data-testid="static-fire">
@@ -117,7 +117,7 @@ export const LaunchDetails = () => {
                                 }
                             </td>
                         </tr>
-                    </table>
+                    </tbody></table>
 
                     <div className={styles.images}>
                         Launch Images: 
