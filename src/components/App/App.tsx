@@ -5,7 +5,8 @@ import { Header } from '../Header/Header';
 // import { History } from '../History/History';
 // import { Rockets } from '../Rockets/Rockets';
 // import { About } from '../About/About';
-import { LaunchDetails } from '../LaunchDetails/LaunchDetails';
+// import { LaunchDetails } from '../LaunchDetails/LaunchDetails';
+import { RocketDetails } from '../RocketDetails/RocketDetails';
 
 const App = () => {
   return (
@@ -16,7 +17,8 @@ const App = () => {
       {/* <History /> */}
       {/* <Rockets /> */}
       {/* <About /> */}
-      <LaunchDetails />
+      {/* <LaunchDetails /> */}
+      <RocketDetails />
     </>
   );
 }
