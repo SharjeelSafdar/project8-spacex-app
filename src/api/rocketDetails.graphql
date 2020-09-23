@@ -1,0 +1,88 @@
+query rocketDetails($rocketId: String!) {
+  rocket(id: $rocketId) {
+    rocket_id
+    rocket_name
+    description
+    # General Details
+    active
+    first_flight
+    height {
+      meters
+    }
+    diameter {
+      meters
+    }
+    mass {
+      kg
+    }
+    stages
+    boosters
+    cost_per_launch
+    success_rate_pct
+    landing_legs {
+      number
+      material
+    }
+    company
+    country
+    wikipedia
+    # Payload Details
+    payload_weights {
+      name
+      kg
+    }
+    # First Stage Details
+    first_stage {
+      reusable
+      engines
+      fuel_amount_tons
+      burn_time_sec
+      thrust_sea_level {
+        kN
+      }
+      thrust_vacuum {
+        kN
+      }
+    }
+    # Second Stage Details
+    second_stage {
+      engines
+      fuel_amount_tons
+      burn_time_sec
+      thrust {
+        kN
+      }
+      payloads {
+        option_1
+        option_2
+        composite_fairing {
+          height {
+            meters
+          }
+          diameter {
+            meters
+          }
+        }
+      }
+    }
+    # Engines' Details
+    engines {
+      number
+      type
+      version
+      layout
+      engine_loss_max
+      propellant_1
+      propellant_2
+      thrust_sea_level {
+        kN
+      }
+      thrust_vacuum {
+        kN
+      }
+      thrust_to_weight
+    }
+    # Images
+    flickr_images
+  }
+}

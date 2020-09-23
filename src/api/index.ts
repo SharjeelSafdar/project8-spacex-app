@@ -817,6 +817,75 @@ export type RecentLaunchesIdsQuery = (
   )>>> }
 );
 
+export type RocketDetailsQueryVariables = Exact<{
+  rocketId: Scalars['String'];
+}>;
+
+
+export type RocketDetailsQuery = (
+  { __typename?: 'Query' }
+  & { rocket?: Maybe<(
+    { __typename?: 'Rocket' }
+    & Pick<Rocket, 'rocket_id' | 'rocket_name' | 'active' | 'first_flight' | 'stages' | 'boosters' | 'cost_per_launch' | 'success_rate_pct' | 'company' | 'country' | 'wikipedia' | 'description' | 'flickr_images'>
+    & { height?: Maybe<(
+      { __typename?: 'Dimension' }
+      & Pick<Dimension, 'meters'>
+    )>, diameter?: Maybe<(
+      { __typename?: 'Dimension' }
+      & Pick<Dimension, 'meters'>
+    )>, mass?: Maybe<(
+      { __typename?: 'Mass' }
+      & Pick<Mass, 'kg'>
+    )>, landing_legs?: Maybe<(
+      { __typename?: 'LandingLegs' }
+      & Pick<LandingLegs, 'number' | 'material'>
+    )>, payload_weights?: Maybe<Array<Maybe<(
+      { __typename?: 'RocketPayloadWeight' }
+      & Pick<RocketPayloadWeight, 'name' | 'kg'>
+    )>>>, first_stage?: Maybe<(
+      { __typename?: 'RocketFirstStage' }
+      & Pick<RocketFirstStage, 'reusable' | 'engines' | 'fuel_amount_tons' | 'burn_time_sec'>
+      & { thrust_sea_level?: Maybe<(
+        { __typename?: 'Thrust' }
+        & Pick<Thrust, 'kN'>
+      )>, thrust_vacuum?: Maybe<(
+        { __typename?: 'Thrust' }
+        & Pick<Thrust, 'kN'>
+      )> }
+    )>, second_stage?: Maybe<(
+      { __typename?: 'RocketSecondStage' }
+      & Pick<RocketSecondStage, 'engines' | 'fuel_amount_tons' | 'burn_time_sec'>
+      & { thrust?: Maybe<(
+        { __typename?: 'Thrust' }
+        & Pick<Thrust, 'kN'>
+      )>, payloads?: Maybe<(
+        { __typename?: 'RocketPayload' }
+        & Pick<RocketPayload, 'option_1' | 'option_2'>
+        & { composite_fairing?: Maybe<(
+          { __typename?: 'Fairing' }
+          & { height?: Maybe<(
+            { __typename?: 'Dimension' }
+            & Pick<Dimension, 'meters'>
+          )>, diameter?: Maybe<(
+            { __typename?: 'Dimension' }
+            & Pick<Dimension, 'meters'>
+          )> }
+        )> }
+      )> }
+    )>, engines?: Maybe<(
+      { __typename?: 'Engines' }
+      & Pick<Engines, 'number' | 'type' | 'version' | 'layout' | 'engine_loss_max' | 'propellant_1' | 'propellant_2' | 'thrust_to_weight'>
+      & { thrust_sea_level?: Maybe<(
+        { __typename?: 'Thrust' }
+        & Pick<Thrust, 'kN'>
+      )>, thrust_vacuum?: Maybe<(
+        { __typename?: 'Thrust' }
+        & Pick<Thrust, 'kN'>
+      )> }
+    )> }
+  )> }
+);
+
 export type RocketsDataShortQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1049,6 +1118,116 @@ export function useRecentLaunchesIdsLazyQuery(baseOptions?: ApolloReactHooks.Laz
 export type RecentLaunchesIdsQueryHookResult = ReturnType<typeof useRecentLaunchesIdsQuery>;
 export type RecentLaunchesIdsLazyQueryHookResult = ReturnType<typeof useRecentLaunchesIdsLazyQuery>;
 export type RecentLaunchesIdsQueryResult = Apollo.QueryResult<RecentLaunchesIdsQuery, RecentLaunchesIdsQueryVariables>;
+export const RocketDetailsDocument = gql`
+    query rocketDetails($rocketId: String!) {
+  rocket(id: $rocketId) {
+    rocket_id
+    rocket_name
+    active
+    first_flight
+    height {
+      meters
+    }
+    diameter {
+      meters
+    }
+    mass {
+      kg
+    }
+    stages
+    boosters
+    cost_per_launch
+    success_rate_pct
+    landing_legs {
+      number
+      material
+    }
+    company
+    country
+    wikipedia
+    description
+    payload_weights {
+      name
+      kg
+    }
+    first_stage {
+      reusable
+      engines
+      fuel_amount_tons
+      burn_time_sec
+      thrust_sea_level {
+        kN
+      }
+      thrust_vacuum {
+        kN
+      }
+    }
+    second_stage {
+      engines
+      fuel_amount_tons
+      burn_time_sec
+      thrust {
+        kN
+      }
+      payloads {
+        option_1
+        option_2
+        composite_fairing {
+          height {
+            meters
+          }
+          diameter {
+            meters
+          }
+        }
+      }
+    }
+    engines {
+      number
+      type
+      version
+      layout
+      engine_loss_max
+      propellant_1
+      propellant_2
+      thrust_sea_level {
+        kN
+      }
+      thrust_vacuum {
+        kN
+      }
+      thrust_to_weight
+    }
+    flickr_images
+  }
+}
+    `;
+
+/**
+ * __useRocketDetailsQuery__
+ *
+ * To run a query within a React component, call `useRocketDetailsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useRocketDetailsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useRocketDetailsQuery({
+ *   variables: {
+ *      rocketId: // value for 'rocketId'
+ *   },
+ * });
+ */
+export function useRocketDetailsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<RocketDetailsQuery, RocketDetailsQueryVariables>) {
+        return ApolloReactHooks.useQuery<RocketDetailsQuery, RocketDetailsQueryVariables>(RocketDetailsDocument, baseOptions);
+      }
+export function useRocketDetailsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<RocketDetailsQuery, RocketDetailsQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<RocketDetailsQuery, RocketDetailsQueryVariables>(RocketDetailsDocument, baseOptions);
+        }
+export type RocketDetailsQueryHookResult = ReturnType<typeof useRocketDetailsQuery>;
+export type RocketDetailsLazyQueryHookResult = ReturnType<typeof useRocketDetailsLazyQuery>;
+export type RocketDetailsQueryResult = Apollo.QueryResult<RocketDetailsQuery, RocketDetailsQueryVariables>;
 export const RocketsDataShortDocument = gql`
     query RocketsDataShort {
   rockets {
