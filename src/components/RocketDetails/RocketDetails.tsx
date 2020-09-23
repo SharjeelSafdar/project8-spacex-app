@@ -217,72 +217,74 @@ export const RocketDetails = () => {
 
                     <h3 className={styles.subHeading}>Engines' Details</h3>
                     <table>
-                        <tr>
-                            <td>Number of Engines</td>
-                            <td data-testid="total-engines">
-                                {data?.rocket?.engines?.number ? data?.rocket?.engines?.number : 'N/A'}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Type</td>
-                            <td data-testid="type">
-                                {data?.rocket?.engines?.type ? data?.rocket?.engines.type : 'N/A'}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Version</td>
-                            <td data-testid="version">
-                                {data?.rocket?.engines?.version ? data?.rocket?.engines.version : 'N/A'}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Layout</td>
-                            <td data-testid="layout">
-                                {data?.rocket?.engines?.layout ? data?.rocket?.engines.layout : 'N/A'}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Maximum Engines Lost</td>
-                            <td data-testid="loss">
-                                {data?.rocket?.engines?.engine_loss_max ? data?.rocket?.engines.engine_loss_max : 'N/A'}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Propellant 1</td>
-                            <td data-testid="propellant1">
-                                {data?.rocket?.engines?.propellant_1 ? data?.rocket?.engines.propellant_1 : 'N/A'}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Propellant 2</td>
-                            <td data-testid="propellant2">
-                                {data?.rocket?.engines?.propellant_2 ? data?.rocket?.engines.propellant_2 : 'N/A'}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Thrust (Sea Level)</td>
-                            <td data-testid="thrust-sea-t">
-                                {data?.rocket?.engines?.thrust_sea_level?.kN 
-                                    ? `${data?.rocket?.engines.thrust_sea_level.kN} kN` 
-                                    : 'N/A'}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Thrust (Vacuum)</td>
-                            <td data-testid="thrust-vacuum-t">
-                                {data?.rocket?.engines?.thrust_vacuum?.kN 
-                                    ? `${data?.rocket?.engines.thrust_vacuum.kN} kN` 
-                                    : 'N/A'}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Thrust to Weight Ratio</td>
-                            <td data-testid="ratio">
-                                {data?.rocket?.engines?.thrust_to_weight 
-                                    ? data?.rocket?.engines.thrust_to_weight 
-                                    : 'N/A'}
-                            </td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td>Number of Engines</td>
+                                <td data-testid="total-engines">
+                                    {data?.rocket?.engines?.number ? data?.rocket?.engines?.number : 'N/A'}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td data-testid="type">
+                                    {data?.rocket?.engines?.type ? data?.rocket?.engines.type : 'N/A'}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Version</td>
+                                <td data-testid="version">
+                                    {data?.rocket?.engines?.version ? data?.rocket?.engines.version : 'N/A'}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Layout</td>
+                                <td data-testid="layout">
+                                    {data?.rocket?.engines?.layout ? data?.rocket?.engines.layout : 'N/A'}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Maximum Engines Lost</td>
+                                <td data-testid="loss">
+                                    {data?.rocket?.engines?.engine_loss_max ? data?.rocket?.engines.engine_loss_max : 'N/A'}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Propellant 1</td>
+                                <td data-testid="propellant1">
+                                    {data?.rocket?.engines?.propellant_1 ? data?.rocket?.engines.propellant_1 : 'N/A'}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Propellant 2</td>
+                                <td data-testid="propellant2">
+                                    {data?.rocket?.engines?.propellant_2 ? data?.rocket?.engines.propellant_2 : 'N/A'}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Thrust (Sea Level)</td>
+                                <td data-testid="thrust-sea-t">
+                                    {data?.rocket?.engines?.thrust_sea_level?.kN 
+                                        ? `${data?.rocket?.engines.thrust_sea_level.kN} kN` 
+                                        : 'N/A'}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Thrust (Vacuum)</td>
+                                <td data-testid="thrust-vacuum-t">
+                                    {data?.rocket?.engines?.thrust_vacuum?.kN 
+                                        ? `${data?.rocket?.engines.thrust_vacuum.kN} kN` 
+                                        : 'N/A'}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Thrust to Weight Ratio</td>
+                                <td data-testid="ratio">
+                                    {data?.rocket?.engines?.thrust_to_weight 
+                                        ? data?.rocket?.engines.thrust_to_weight 
+                                        : 'N/A'}
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
 
                     <h3 className={styles.subHeading}>Rocket Images</h3>
