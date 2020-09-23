@@ -83,19 +83,19 @@
         position: absolute;
         width: 100%;
         top: 100%;
-        padding: 0 1em;
+        padding: 0 1em 1em;
         transform-origin: top;
         transform: scale(1, 0);
         transition: transform 400ms ease-in-out;
     }
-    /* .link {
+    .link {
         opacity: 0;
-        transition: all 250ms ease-in-out;
-    } */
-    /* .checkbox:checked ~ .link {
+        transition: all 130ms linear 0ms;
+    }
+    .checkbox:checked ~ .links .link {
         opacity: 1;
-        transition: all 250ms ease-in-out;
-    } */
+        transition: all 200ms linear 250ms;
+    }
     .checkbox:checked ~ .links {
         transform: scale(1, 1);
     }
