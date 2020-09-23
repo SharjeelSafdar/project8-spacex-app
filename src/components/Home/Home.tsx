@@ -1,4 +1,5 @@
 import React from 'react';
+// Components
 import { NextLaunch, RecentLaunches } from '../components';
 // Styles
 import styles from './Home.module.css';

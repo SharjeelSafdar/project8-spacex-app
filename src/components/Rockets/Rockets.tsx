@@ -1,5 +1,7 @@
 import React from 'react';
+// GraphQL Query Hook
 import { useRocketsDataShortQuery } from '../../api/index';
+// Icons
 import { FcWikipedia } from 'react-icons/fc';
 // Styles
 import styles from './Rockets.module.css';

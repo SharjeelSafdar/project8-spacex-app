@@ -1,6 +1,8 @@
 import React from 'react';
-import { LaunchCard } from '../components';
+// GraphQL Query Hook
 import { useRecentLaunchesIdsQuery } from '../../api/index';
+// Components
+import { LaunchCard } from '../components';
 // Styles
 import styles from './RecentLaunches.module.css';
 

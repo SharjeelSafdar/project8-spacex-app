@@ -1,5 +1,7 @@
 import React from 'react';
+// GraphQL Query Hook
 import { useNextLaunchQuery } from '../../api/index';
+// Components
 import { Timer } from '../components';
 // Styles
 import styles from './NextLaunch.module.css';

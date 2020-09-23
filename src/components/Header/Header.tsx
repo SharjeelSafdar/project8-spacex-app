@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// Icons
 import { FaHome, FaHistory } from 'react-icons/fa';
 import { GoRocket } from 'react-icons/go';
 import { AiFillRocket } from 'react-icons/ai';

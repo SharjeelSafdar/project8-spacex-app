@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// GraphQL Query Hook
 import { useCountdownTimer } from 'use-countdown-timer';
 // Styles
 import styles from './Timer.module.css';

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+// GraphQL Query Hooks and Types
 import { useAllLaunchesIdsQuery, Order, LaunchRange } from '../../api/index';
+// Components
 import { LaunchCard } from '../components';
 // Styles
 import styles from './LaunchesAll.module.css';

@@ -1,5 +1,7 @@
 import React from 'react';
+// GraphQL Query Hook
 import { useSingleLaunchQuery } from '../../api/index';
+// Icons
 import { FaYoutube } from 'react-icons/fa';
 import { RiArticleLine } from 'react-icons/ri';
 // Styles

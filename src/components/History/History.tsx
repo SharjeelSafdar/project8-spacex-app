@@ -1,8 +1,10 @@
 import React from 'react';
+// GraphQL Query Hook
 import { useHistoryQuery } from '../../api/index';
+// Icons
 import { RiArticleLine } from 'react-icons/ri';
 import { FcWikipedia } from 'react-icons/fc';
-// Stles
+// Styles
 import styles from './History.module.css';
 
 export const History = () => {
