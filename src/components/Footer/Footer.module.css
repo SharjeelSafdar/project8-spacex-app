@@ -1,0 +1,77 @@
+.container {
+    border-top: 1px solid #999;
+    background-color: #101518;
+    color: whitesmoke;
+    padding: 40px 7%;
+    display: flex;
+}
+
+ul {
+    list-style: none;
+}
+.localLinks {
+    width: 50%;
+}
+.localLinks ul {
+    display: flex;
+    flex-direction: column;
+}
+.localLinks ul li {
+    width: fit-content;
+}
+.localLinks ul li::after {
+    content: '';
+    display: block;
+    height: 2px;
+    border-radius: 2px;
+    background-color: whitesmoke;
+    transform-origin: right;
+    transform: scale(0, 1);
+    transition: transform 250ms ease-in-out;
+}
+.localLinks ul li:hover::after {
+    transform-origin: left;
+    transform: scale(1, 1);
+}
+
+.socialLinks ul {
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid whitesmoke;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+.socialLinks ul li {
+    margin-right: 15px;
+    transform-origin: center;
+    transition: transform 100ms ease-in-out;
+}
+.socialLinks ul li:hover {
+    transform: scale(1.20);
+}
+.socialLinks ul li a, .socialLinks a {
+    color: whitesmoke;
+    text-decoration: none;
+}
+.socialLinks a {
+    display: flex;
+    flex-direction: row;
+}
+.socialLinks a p {
+    margin-left: 10px;
+    width: fit-content;
+}
+.socialLinks a p::after {
+    content: '';
+    display: block;
+    height: 2px;
+    border-radius: 2px;
+    background-color: whitesmoke;
+    transform-origin: right;
+    transform: scale(0, 1);
+    transition: transform 250ms ease-in-out;
+}
+.socialLinks a:hover p::after {
+    transform-origin: left;
+    transform: scale(1, 1);
+}

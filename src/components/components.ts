@@ -10,3 +10,4 @@ export { History } from './History/History';
 export { Rockets } from './Rockets/Rockets';
 export { RocketDetails } from './RocketDetails/RocketDetails';
 export { About } from './About/About';
+export { Footer } from './Footer/Footer';

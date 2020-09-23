@@ -9,6 +9,7 @@ import {
   RocketDetails, 
   // History, 
   // About,
+  Footer
 } from '../components';
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
       {/* <About /> */}
       {/* <LaunchDetails /> */}
       <RocketDetails />
+      <Footer />
     </>
   );
 }
