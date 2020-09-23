@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAllLaunchesIdsQuery, Order, LaunchRange } from '../../api/index';
-import { LaunchCard } from '../LaunchCard/LaunchCard';
+import { LaunchCard } from '../components';
 // Styles
 import styles from './LaunchesAll.module.css';
 

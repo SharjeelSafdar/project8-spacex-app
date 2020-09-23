@@ -1,5 +1,5 @@
 import React from 'react';
-import { LaunchCard } from '../LaunchCard/LaunchCard';
+import { LaunchCard } from '../components';
 import { useRecentLaunchesIdsQuery } from '../../api/index';
 // Styles
 import styles from './RecentLaunches.module.css';

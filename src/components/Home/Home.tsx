@@ -1,6 +1,5 @@
 import React from 'react';
-import { NextLaunch } from '../NextLaunch/NextLaunch';
-import { RecentLaunches } from '../RecentLaunches/RecentLaunches';
+import { NextLaunch, RecentLaunches } from '../components';
 // Styles
 import styles from './Home.module.css';
 

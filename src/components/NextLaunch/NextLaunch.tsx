@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNextLaunchQuery } from '../../api/index';
-import { Timer } from '../Timer/Timer';
+import { Timer } from '../components';
 // Styles
 import styles from './NextLaunch.module.css';
 
