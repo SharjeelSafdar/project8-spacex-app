@@ -27,6 +27,13 @@
 .missionPatch img:hover {
     transform: scale(1.1);
 }
+.missionPatch a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .launchData {
     flex-basis: 100%;
