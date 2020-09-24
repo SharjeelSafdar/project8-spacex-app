@@ -14,7 +14,7 @@ import {
   NoPage,
 } from '../components';
 
-const App = () => {
+export const App: React.FC<{}> = () => {
   return (
     <>
       <Header />
@@ -38,5 +38,3 @@ const App = () => {
     </>
   );
 }
-
-export default App;

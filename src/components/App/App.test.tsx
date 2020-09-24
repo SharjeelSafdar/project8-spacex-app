@@ -4,7 +4,7 @@ import { cleanup, render, fireEvent, waitForDomChange } from '@testing-library/r
 import { MockedProvider } from '@apollo/client/testing';
 import { mockedResponses } from '../../api/mockedResponses';
 import { MemoryRouter } from 'react-router-dom';
-import App from './App';
+import { App } from './App';
 
 const renderApp = (path?: string) => render(
 	<MockedProvider mocks={mockedResponses} addTypename={false}>
