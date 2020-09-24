@@ -11,3 +11,4 @@ export { Rockets } from './Rockets/Rockets';
 export { RocketDetails } from './RocketDetails/RocketDetails';
 export { About } from './About/About';
 export { Footer } from './Footer/Footer';
+export { NoPage } from './NoPage/NoPage';
