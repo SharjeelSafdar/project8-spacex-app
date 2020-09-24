@@ -1,3 +1,4 @@
+export { App } from './App/App';
 export { Header } from './Header/Header';
 export { Timer } from './Timer/Timer';
 export { NextLaunch } from './NextLaunch/NextLaunch';
@@ -12,3 +13,4 @@ export { RocketDetails } from './RocketDetails/RocketDetails';
 export { About } from './About/About';
 export { Footer } from './Footer/Footer';
 export { NoPage } from './NoPage/NoPage';
+export { ScrollToTop } from './ScrollToTop/ScrollToTop';
