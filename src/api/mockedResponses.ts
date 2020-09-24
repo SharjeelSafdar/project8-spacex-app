@@ -546,7 +546,7 @@ export const mockedResponses = [
     {
         request: {
             query: SingleLaunchDocument,
-            variables: { flightNumber: '1' },
+            variables: { flightNumber: "1" },
         },
         result: {
             "data": {
@@ -1614,6 +1614,41 @@ export const mockedResponses = [
                         "wikipedia": "https://en.wikipedia.org/wiki/SpaceX_Starship"
                     }
                 ]
+            }
+        }
+    },
+    {
+        request: {
+            query: LaunchDetailsDocument,
+            variables: {
+                flightNumber: "1",
+            },
+        },
+        result: {
+            "data": {
+                "launch": {
+                    "mission_name": "FalconSat",
+                    "flight_number": 1,
+                    "upcoming": false,
+                    "launch_success": false,
+                    "static_fire_date_unix": 1142553600,
+                    "launch_date_unix": 1143239400,
+                    "launch_site": {
+                        "site_name_long": "Kwajalein Atoll Omelek Island"
+                    },
+                    "details": "Engine failure at 33 seconds and loss of vehicle",
+                    "rocket": {
+                        "rocket_id": "falcon1",
+                        "rocket_name": "Falcon 1"
+                    },
+                    "links": {
+                        "mission_patch_small": "https://images2.imgbox.com/3c/0e/T8iJcSN3_o.png",
+                        "article_link": "https://www.space.com/2196-spacex-inaugural-falcon-1-rocket-lost-launch.html",
+                        "wikipedia": "https://en.wikipedia.org/wiki/DemoSat",
+                        "video_link": "https://www.youtube.com/watch?v=0a_00nJ_Y88",
+                        "flickr_images": []
+                    }
+                }
             }
         }
     },
