@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 // GraphQL Query Hook
 import { useSingleLaunchQuery } from '../../api/index';
 // Icons
@@ -22,15 +23,17 @@ export const LaunchCard: React.FC<Props> = ({ flightNumber }) => {
                 <>
                     <div className={styles.missionPatch}>
                         {!!data?.launch?.links?.mission_patch_small
-                            ? <img
-                                src={(data?.launch?.links?.mission_patch_small !== null)
-                                    ? data?.launch?.links?.mission_patch_small
-                                    : undefined
-                                }
-                                alt="Mission Patch"
-                                title="Mission Patch"
-                                data-testid="mission-patch"
-                            />
+                            ? <Link to={`/launches-all/${data?.launch?.flight_number}`}>
+                                <img
+                                    src={(data?.launch?.links?.mission_patch_small !== null)
+                                        ? data?.launch?.links?.mission_patch_small
+                                        : undefined
+                                    }
+                                    alt="Mission Patch"
+                                    title="Mission Patch"
+                                    data-testid="mission-patch"
+                                />
+                            </Link>
                             : ''
                         }
                     </div>
@@ -57,7 +60,12 @@ export const LaunchCard: React.FC<Props> = ({ flightNumber }) => {
                         </p>
                         <div className={styles.links}>
                             <span className={styles.detailsLink}>
-                                More Details...
+                                <Link 
+                                    to={`/launches-all/${data?.launch?.flight_number}`} 
+                                    data-testid="more-details"
+                                >
+                                    More Details...
+                                </Link>
                             </span>
                             {!!data?.launch?.links?.video_link
                                 ? <span>

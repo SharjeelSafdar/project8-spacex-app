@@ -1,21 +1,23 @@
 import React from 'react';
+import { useParams, Link } from 'react-router-dom';
 // GraphQL Query Hook
 import { useLaunchDetailsQuery } from '../../api/index';
 // Icons
-import { FaYoutube } from 'react-icons/fa';
+import { FaYoutube, FaLink } from 'react-icons/fa';
 import { FcWikipedia } from 'react-icons/fc';
 import { RiArticleLine } from 'react-icons/ri';
 // Styles
 import styles from './LaunchDetails.module.css';
 
-const flightNumber = 101;
+const flightNumberDefault = '101';
 
-export const LaunchDetails = () => {
+export const LaunchDetails: React.FC<{}> = () => {
+    const { flightNumber } = useParams();
     const { data, loading, error } = useLaunchDetailsQuery({
-        variables: { flightNumber: flightNumber.toString() }
+        variables: { flightNumber: flightNumber || flightNumberDefault }
     });
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-testid="launch-details-page">
             {loading ? 'Loading data...' : error ? 'Error fetching launch data...' :
                 <>
                     <div className={styles.patchAndTitle}>
@@ -64,7 +66,9 @@ export const LaunchDetails = () => {
                         <tr>
                             <td className={styles.c1}>Rocket</td>
                             <td className={styles.c2} data-testid="rocket">
-                                {data?.launch?.rocket?.rocket_name}
+                                <Link to={`/rockets/${data?.launch?.rocket?.rocket_id}`}>
+                                    {data?.launch?.rocket?.rocket_name} <FaLink />
+                                </Link>
                             </td>
                         </tr>
                         <tr>
@@ -123,7 +127,8 @@ export const LaunchDetails = () => {
 
                     <div className={styles.images}>
                         Launch Images: 
-                        {data && data.launch && data.launch.links && data.launch.links.flickr_images ?
+                        {data && data.launch && data.launch.links && 
+                            data.launch.links.flickr_images && data.launch.links.flickr_images[0] ?
                             data.launch.links.flickr_images.map(image => (
                                 <img
                                     className={styles.image}

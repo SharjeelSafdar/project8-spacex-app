@@ -1,4 +1,5 @@
 import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
 import { render, cleanup, waitForDomChange } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
 import { mockedResponses } from '../../api/mockedResponses';
@@ -6,7 +7,9 @@ import { LaunchCard } from './LaunchCard';
 
 const renderLaunchCard = (flightNumber: number) => render(
     <MockedProvider mocks={mockedResponses} addTypename={false}>
-        <LaunchCard flightNumber={flightNumber} />
+        <MemoryRouter>
+            <LaunchCard flightNumber={flightNumber} />
+        </MemoryRouter>
     </MockedProvider>
 );
 

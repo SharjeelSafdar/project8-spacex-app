@@ -2,11 +2,14 @@ import React from 'react';
 import { render, cleanup, waitForDomChange } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
 import { mockedResponses } from '../../api/mockedResponses';
+import { MemoryRouter } from 'react-router-dom';
 import { Rockets } from './Rockets';
 
 const renderRockets = () => render(
     <MockedProvider mocks={mockedResponses} addTypename={false}>
-        <Rockets />
+        <MemoryRouter>
+            <Rockets />
+        </MemoryRouter>
     </MockedProvider>
 );
 
@@ -36,5 +39,12 @@ describe ('Tests for <Rockets />', () => {
         expect( getByText('First Flight Date: 2006-03-24') ).toBeInTheDocument();
         expect( getByText(/description: the falcon 1 was an expendable/i) ).toBeInTheDocument();
         expect( getByTestId('wiki1') ).toHaveAttribute('title', 'Wikipedia Link');
+    })
+
+    it ('Contains a button for more details', async () => {
+        const { getAllByTestId } = renderRockets();
+        await waitForDomChange();
+
+        expect( getAllByTestId('more-rocket-details').length ).toBeGreaterThanOrEqual(4);
     })
 })

@@ -1,9 +1,11 @@
 import React from 'react';
-import styles from './About.module.css';
+// Images
 import logo from '../../images/spacexLogo.jpg';
 import elon from '../../images/elon.jpg';
 import shotwell from '../../images/shotwell.jpg';
 import tom from '../../images/tom.jpg';
+// Styles
+import styles from './About.module.css';
 
 const persons = [
     { name: 'Elon Musk', title: 'Founder, CEO, CTO', image: elon },
@@ -11,9 +13,9 @@ const persons = [
     { name: 'Tom Mueller', title: 'CTO-Propulsion', image: tom },
 ];
 
-export const About = () => {
+export const About: React.FC<{}> = () => {
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-testid="about-page">
             <img src={logo} alt="logo" className={styles.logo} />
             <h4 className={styles.year}>Founded in 2002</h4>
             <p className={styles.details}>

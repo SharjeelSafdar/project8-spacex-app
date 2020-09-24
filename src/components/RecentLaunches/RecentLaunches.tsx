@@ -8,7 +8,7 @@ import styles from './RecentLaunches.module.css';
 
 const numRecentFlights = 3;
 
-export const RecentLaunches = () => {
+export const RecentLaunches: React.FC<{}> = () => {
     const { data, loading, error } = useRecentLaunchesIdsQuery({
         variables: { count: numRecentFlights }
     });

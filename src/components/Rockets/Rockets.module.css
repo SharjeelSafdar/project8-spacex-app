@@ -39,11 +39,24 @@
     display: flex;
     margin-top: 10px;
 }
+.more {
+    color: blue;
+    text-decoration: underline;
+    user-select: none;
+    cursor: pointer;
+    font-size: 0.8em;
+}
 .wikiLink {
     margin-left: auto;
     font-size: 1.4em;
     text-decoration: none;
     color: whitesmoke;
+}
+.wikiLink, .more {
+    transition: transform 250ms ease-in-out;
+}
+.wikiLink:hover, .more:hover {
+    transform: scale(1.1);
 }
 
 @media (max-width: 550px) {

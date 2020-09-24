@@ -7,10 +7,10 @@ import { FcWikipedia } from 'react-icons/fc';
 // Styles
 import styles from './History.module.css';
 
-export const History = () => {
+export const History: React.FC<{}> = () => {
     const { data, loading, error } = useHistoryQuery();
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-testid="history-page">
             <h3 className={styles.heading}>History</h3>
             <div className={styles.histories} style={{paddingBottom: (loading || !!error) ? '20px' : 0}}>
                 {loading ? 'Loading data...' : error ? 'Error fetching data...' :

@@ -16,6 +16,11 @@ ul {
     display: flex;
     flex-direction: column;
 }
+.localLinks ul a {
+    color: whitesmoke;
+    text-decoration: none;
+    width: fit-content;
+}
 .localLinks ul li {
     width: fit-content;
 }

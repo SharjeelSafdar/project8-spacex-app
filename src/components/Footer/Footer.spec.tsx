@@ -1,16 +1,23 @@
 import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
 import { render, cleanup } from '@testing-library/react';
 import { Footer } from './Footer';
+
+const renderHeader = () => render(
+    <MemoryRouter>
+        <Footer />
+    </MemoryRouter>
+);
 
 describe ('Tests for <Footer />', () => {
     afterEach(cleanup);
 
     it ('Renders without crashing', () => {
-        render(<Footer />);
+        renderHeader();
     })
 
     it ('Displays all important links for navigation', () => {
-        const { getByTestId } = render(<Footer />);
+        const { getByTestId } = renderHeader();
 
         expect( getByTestId('home') ).toBeInTheDocument();
         expect( getByTestId('launches') ).toBeInTheDocument();
@@ -20,7 +27,7 @@ describe ('Tests for <Footer />', () => {
     })
 
     it ('Displays all important links for navigation', () => {
-        const { getByTestId } = render(<Footer />);
+        const { getByTestId } = renderHeader();
 
         expect( getByTestId('twitter') ).toBeInTheDocument();
         expect( getByTestId('youtube') ).toBeInTheDocument();
@@ -30,7 +37,7 @@ describe ('Tests for <Footer />', () => {
     })
 
     it ('Displays SpaceX Headquarter address', () => {
-        const { getByText, getByTestId } = render(<Footer />);
+        const { getByText, getByTestId } = renderHeader();
         
         expect( getByText(/Rocket Road/i) ).toBeInTheDocument();
         expect( getByText(/Hawthorne/i) ).toBeInTheDocument();

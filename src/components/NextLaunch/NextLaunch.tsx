@@ -6,7 +6,7 @@ import { Timer } from '../components';
 // Styles
 import styles from './NextLaunch.module.css';
 
-export const NextLaunch = () => {
+export const NextLaunch: React.FC<{}> = () => {
 	const { data, loading, error } = useNextLaunchQuery();
 
     return (

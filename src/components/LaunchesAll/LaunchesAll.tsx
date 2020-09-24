@@ -12,9 +12,9 @@ type Varaibles = {
     order: Order;
 }
 
-export const LaunchesAll = () => {
-    const [variables, setVariables] = useState<Varaibles>({ order: Order.Asc });
-    const [numLaunches, setNumLaunches] = useState<number>(numLaunchesPerPage);
+export const LaunchesAll: React.FC<{}> = () => {
+    const [ variables, setVariables ] = useState<Varaibles>({ order: Order.Asc });
+    const [ numLaunches, setNumLaunches ] = useState<number>(numLaunchesPerPage);
     const [ showMoreBtn, setShowMoreBtn ] = useState<boolean>(true);
     const { data, loading, error } = useAllLaunchesIdsQuery({ variables });
 
@@ -23,7 +23,7 @@ export const LaunchesAll = () => {
         : [];
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-testid="launches-all-page">
             <h3 className={styles.heading}>
                 {!variables.range
                     ? 'All Launches'

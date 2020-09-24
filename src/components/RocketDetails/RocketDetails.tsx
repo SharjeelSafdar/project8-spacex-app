@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 // GraphQL Query Hook
 import { useRocketDetailsQuery } from '../../api/index';
 // Icons
@@ -6,14 +7,15 @@ import { FcWikipedia } from 'react-icons/fc';
 // Styles
 import styles from './RocketDetails.module.css';
 
-const rocketId = "falcon9";
+const rocketIdDefault = "falcon9";
 
-export const RocketDetails = () => {
+export const RocketDetails: React.FC<{}> = () => {
+    const { rocketId } = useParams();
     const { data, loading, error } = useRocketDetailsQuery({
-        variables: { rocketId }
+        variables: { rocketId: rocketId || rocketIdDefault }
     });
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-testid="rocket-details-page">
             {loading ? 'Loading data...' : error ? 'Error fetching data...' :
                 <>
                     <h2 className={styles.heading} data-testid="heading">{data?.rocket?.rocket_name}</h2>

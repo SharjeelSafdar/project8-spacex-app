@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 // Icons
 import { FaTwitter, FaYoutube, FaLinkedinIn } from 'react-icons/fa';
 import { AiFillInstagram } from 'react-icons/ai';
@@ -6,16 +7,26 @@ import { MdDoNotDisturb, MdLocationOn } from 'react-icons/md';
 // Styles
 import styles from './Footer.module.css';
 
-export const Footer = () => {
+export const Footer: React.FC<{}> = () => {
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-testid="footer">
             <div className={styles.localLinks}>
                 <ul>
-                    <li data-testid="home">Home</li>
-                    <li data-testid="launches">Launches</li>
-                    <li data-testid="rockets">Rockets</li>
-                    <li data-testid="history">History</li>
-                    <li data-testid="about">About</li>
+                    <Link to="./">
+                        <li data-testid="home">Home</li>
+                    </Link>
+                    <Link to="./launches-all">
+                        <li data-testid="launches">Launches</li>
+                    </Link>
+                    <Link to="./rockets">
+                        <li data-testid="rockets">Rockets</li>
+                    </Link>
+                    <Link to="./history">
+                        <li data-testid="history">History</li>
+                    </Link>
+                    <Link to="./about">
+                        <li data-testid="about">About</li>
+                    </Link>
                 </ul>
             </div>
             <div className={styles.socialLinks}>
