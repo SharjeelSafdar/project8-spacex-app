@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 // GraphQL Query Hook
 import { useLaunchDetailsQuery } from '../../api/index';
+import { Message } from '../../react-app-env.d';
 // Icons
 import { FaYoutube, FaLink } from 'react-icons/fa';
 import { FcWikipedia } from 'react-icons/fc';
@@ -13,12 +14,12 @@ const flightNumberDefault = '101';
 
 export const LaunchDetails: React.FC<{}> = () => {
     const { flightNumber } = useParams();
-    const { data, loading, error } = useLaunchDetailsQuery({
+    const { data, loading, error, networkStatus } = useLaunchDetailsQuery({
         variables: { flightNumber: flightNumber || flightNumberDefault }
     });
     return (
         <div className={styles.container} data-testid="launch-details-page">
-            {loading ? 'Loading data...' : error ? 'Error fetching launch data...' :
+            {loading ? Message.LOADING : networkStatus === 8 ? Message.OFFLINE : error ? Message.ERROR :
                 <>
                     <div className={styles.patchAndTitle}>
                         {data && data.launch && data.launch.links && data?.launch?.links?.mission_patch_small &&

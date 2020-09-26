@@ -1,6 +1,7 @@
 import React from 'react';
 // GraphQL Query Hook
 import { useHistoryQuery } from '../../api/index';
+import { Message } from '../../react-app-env.d';
 // Icons
 import { RiArticleLine } from 'react-icons/ri';
 import { FcWikipedia } from 'react-icons/fc';
@@ -8,12 +9,12 @@ import { FcWikipedia } from 'react-icons/fc';
 import styles from './History.module.css';
 
 export const History: React.FC<{}> = () => {
-    const { data, loading, error } = useHistoryQuery();
+    const { data, loading, error, networkStatus } = useHistoryQuery();
     return (
         <div className={styles.container} data-testid="history-page">
             <h3 className={styles.heading}>History</h3>
             <div className={styles.histories} style={{paddingBottom: (loading || !!error) ? '20px' : 0}}>
-                {loading ? 'Loading data...' : error ? 'Error fetching data...' :
+                {loading ? Message.LOADING : networkStatus === 8 ? Message.OFFLINE : error ? Message.ERROR :
                     data && data.history && data?.history.map( (historyItem, index) => (
                         <div className={styles.historyItem} data-testid={`historyItem${index+1}`} key={index+1}>
                             <h4 className={styles.title}>

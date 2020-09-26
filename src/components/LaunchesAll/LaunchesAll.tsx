@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 // GraphQL Query Hooks and Types
 import { useAllLaunchesIdsQuery, Order, LaunchRange } from '../../api/index';
+import { Message } from '../../react-app-env.d';
 // Components
 import { LaunchCard } from '../components';
 // Styles
@@ -16,7 +17,7 @@ export const LaunchesAll: React.FC<{}> = () => {
     const [ variables, setVariables ] = useState<Varaibles>({ order: Order.Asc });
     const [ numLaunches, setNumLaunches ] = useState<number>(numLaunchesPerPage);
     const [ showMoreBtn, setShowMoreBtn ] = useState<boolean>(true);
-    const { data, loading, error } = useAllLaunchesIdsQuery({ variables });
+    const { data, loading, error, networkStatus } = useAllLaunchesIdsQuery({ variables });
 
     const ids = (data && data.launches)
         ? data.launches.map(launch => launch?.flight_number)
@@ -142,7 +143,7 @@ export const LaunchesAll: React.FC<{}> = () => {
                 </button>
             </div>
             <div className={styles.launches}  style={{paddingBottom: (loading || !!error) ? '20px' : 0}}>
-                {loading ? 'Loading launches...' : error ? 'Error fetching launches...' :
+                {loading ? Message.LOADING : networkStatus === 8 ? Message.OFFLINE : error ? Message.ERROR :
                     ids
                         .slice(0, Math.min(numLaunches, ids.length))
                         .map(id => id && <LaunchCard flightNumber={id} key={id} data-testid={id} />)

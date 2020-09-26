@@ -2,18 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 // GraphQL Query Hook
 import { useRocketsDataShortQuery } from '../../api/index';
+import { Message } from '../../react-app-env.d';
 // Icons
 import { FcWikipedia } from 'react-icons/fc';
 // Styles
 import styles from './Rockets.module.css';
 
 export const Rockets: React.FC<{}> = () => {
-    const { data, loading, error } = useRocketsDataShortQuery();
+    const { data, loading, error, networkStatus } = useRocketsDataShortQuery();
     return (
         <div className={styles.container} data-testid="rockets-page">
             <h3 className={styles.heading}>Rockets</h3>
             <div className={styles.rockets} style={{ paddingBottom: (loading || !!error) ? '20px' : 0 }}>
-                {loading ? 'Loading Data...' : error ? 'Error loading data' :
+                {loading ? Message.LOADING : networkStatus === 8 ? Message.OFFLINE : error ? Message.ERROR :
                     data && data.rockets && data.rockets.map((rocket, index) => (
                         <div className={styles.rocket} data-testid={rocket?.rocket_id} key={rocket?.rocket_id}>
                             <h4 className={styles.title}>{rocket?.rocket_name}</h4>

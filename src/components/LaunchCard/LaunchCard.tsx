@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 // GraphQL Query Hook
 import { useSingleLaunchQuery } from '../../api/index';
+import { Message } from '../../react-app-env.d';
 // Icons
 import { FaYoutube } from 'react-icons/fa';
 import { RiArticleLine } from 'react-icons/ri';
@@ -13,13 +14,13 @@ interface Props {
 }
 
 export const LaunchCard: React.FC<Props> = ({ flightNumber }) => {
-    const { data, loading, error } = useSingleLaunchQuery({
+    const { data, loading, error, networkStatus } = useSingleLaunchQuery({
         variables: { flightNumber: flightNumber.toString() },
     });
 
     return (
         <div className={styles.container}>
-            {loading ? 'Loading launch data...' : error ? 'Error fetching launch data...' :
+            {loading ? Message.LOADING : networkStatus === 8 ? Message.OFFLINE : error ? Message.ERROR :
                 <>
                     <div className={styles.missionPatch}>
                         {!!data?.launch?.links?.mission_patch_small
