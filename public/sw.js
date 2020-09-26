@@ -1,28 +1,43 @@
-const CACHE_NAME = 'v1';
-const QUERY_CACHE_KEY = 'CACHE_V_0';
+const ASSETS_CACHE = 'ASSETS_CACHE_V_1';
+const GQL_CACHE = 'GQL_CACHE_V_1';
+const ALL_CACHES = [ASSETS_CACHE, GQL_CACHE];
 const GRAPHQL_URL = 'https://spacexdata.herokuapp.com/graphql';
+const CACHE_ASSETS = [
+    '/static/media/elon.2c9f684f.jpg',
+    '/static/media/shotwell.9cedd0ee.jpg',
+    '/static/media/spacexLogo.96afe8f6.jpg',
+    '/static/media/tom.fd77617a.jpg',
+];
 
 // Call install event
-this.addEventListener('install', (e) => {
-    console.log('Service Worker: Installed')
-})
+// this.addEventListener('install', (e) => {
+//     console.log('Service Worker: Installed')
+// })
 
 // Call activate event
 this.addEventListener('activate', (e) => {
-    console.log('Service Worker: Activated');
-    // Remove unwanted caches.
     e.waitUntil(
-        caches.keys().then(cacheNames => {
-            return Promise.all(
-                cacheNames.map(cache => {
-                    if (cache !== CACHE_NAME) {
-                        // Remove all old caches.
-                        return caches.delete(cache);
-                    }
-                    return null;
-                })
-            )
-        })
+        Promise.all([
+            // Delete any previous versions of caches
+            caches
+                .keys()
+                .then(cacheNames => {
+                    return Promise.all(
+                        cacheNames.map(cache => {
+                            if (cache in ALL_CACHES) {
+                                // Remove all old caches.
+                                return caches.delete(cache);
+                            }
+                            return null;
+                        })
+                    )
+                }),
+            // Statically cache some assets
+            caches
+                .open(ASSETS_CACHE)
+                .then(cache => cache.addAll(CACHE_ASSETS))
+                .then(() => this.skipWaiting())
+        ])
     )
 })
 
@@ -49,7 +64,7 @@ this.addEventListener('fetch', event => {
 
                             // Clone and cache the respone if it is a valid one.
                             var responseToCache = response.clone();
-                            caches.open(CACHE_NAME)
+                            caches.open(ASSETS_CACHE)
                                 .then(cache => {
                                     cache.put(event.request, responseToCache);
                                 });
@@ -122,7 +137,7 @@ function handleGraphQL(e) {
 }
 
 async function fromCache(request) {
-    const cache = await caches.open(QUERY_CACHE_KEY);
+    const cache = await caches.open(GQL_CACHE);
     const matching = await cache.match(request);
 
     return matching;
@@ -133,6 +148,6 @@ function fromNetwork(request) {
 }
 
 async function saveToCache(request, response) {
-    const cache = await caches.open(QUERY_CACHE_KEY);
+    const cache = await caches.open(GQL_CACHE);
     await cache.put(request, response);
 }
