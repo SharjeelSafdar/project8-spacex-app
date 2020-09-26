@@ -32,3 +32,6 @@ The following are some of the learning outcomes of this project:
 - Creating a PWA with ServiceWorkers and Manifest
 - Using Typescript to develop a typed web app
 - Building a web app with React.JS, React Icons, React Router DOM, etc.
+
+### API Used
+[SpaceX GrapgQL API](https://spacexdata.herokuapp.com/graphql)
