@@ -12,21 +12,31 @@ export const Footer: React.FC<{}> = () => {
         <div className={styles.container} data-testid="footer">
             <div className={styles.localLinks}>
                 <ul>
-                    <Link to="./">
-                        <li data-testid="home">Home</li>
-                    </Link>
-                    <Link to="./launches-all">
-                        <li data-testid="launches">Launches</li>
-                    </Link>
-                    <Link to="./rockets">
-                        <li data-testid="rockets">Rockets</li>
-                    </Link>
-                    <Link to="./history">
-                        <li data-testid="history">History</li>
-                    </Link>
-                    <Link to="./about">
-                        <li data-testid="about">About</li>
-                    </Link>
+                    <li>
+                        <Link to="./" data-testid="home">
+                            Home
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="./launches-all" data-testid="launches">
+                            Launches
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="./rockets" data-testid="rockets">
+                            Rockets
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="./history" data-testid="history">
+                            History
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="./about" data-testid="about">
+                            About
+                        </Link>
+                    </li>
                 </ul>
             </div>
             <div className={styles.socialLinks}>
@@ -49,6 +59,7 @@ export const Footer: React.FC<{}> = () => {
                             href="https://twitter.com/spacex"
                             target="_blank"
                             rel="noopener noreferrer"
+                            title="SpaceX Twitter Handle"
                         >
                             <FaTwitter />
                         </a>
@@ -58,6 +69,7 @@ export const Footer: React.FC<{}> = () => {
                             href="https://www.youtube.com/spacex"
                             target="_blank"
                             rel="noopener noreferrer"
+                            title="SpaceX YouTube Channel"
                         >
                             <FaYoutube />
                         </a>
@@ -67,6 +79,7 @@ export const Footer: React.FC<{}> = () => {
                             href="https://www.instagram.com/spacex/"
                             target="_blank"
                             rel="noopener noreferrer"
+                            title="SpaceX Instagram Account"
                         >
                             <AiFillInstagram />
                         </a>
@@ -76,6 +89,7 @@ export const Footer: React.FC<{}> = () => {
                             href="https://www.flickr.com/photos/spacex"
                             target="_blank"
                             rel="noopener noreferrer"
+                            title="SpaceX on Flickr"
                         >
                             <MdDoNotDisturb />
                         </a>
@@ -85,6 +99,7 @@ export const Footer: React.FC<{}> = () => {
                             href="https://www.linkedin.com/company/spacex"
                             target="_blank"
                             rel="noopener noreferrer"
+                            title="SpaceX LinkedIn Account"
                         >
                             <FaLinkedinIn />
                         </a>

@@ -80,3 +80,9 @@ ul {
     transform-origin: left;
     transform: scale(1, 1);
 }
+
+@media (max-width: 500px) {
+    .localLinks li {
+        margin: 5px 0;
+    }
+}
