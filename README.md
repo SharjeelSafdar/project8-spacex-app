@@ -22,7 +22,7 @@ The following are some of the features of this project:
 
 ### Learning Outcomes
 The following are some of the learning outcomes of this project:
-- Using GraphQL to query APIs
+- Using GraphQL to query APIs with [Apollo Client](https://www.apollographql.com/docs/react/)
 - Intercepting and caching query responses dynamically in service-worker
 - Using stale-while-revalidate approach for caching to get speed as well as updated data
 - Using Test Driven Development (TDD) approach for developing web apps
