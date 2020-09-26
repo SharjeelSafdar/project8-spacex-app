@@ -29,7 +29,7 @@ describe ('Tests for <LaunchesAll />', () => {
     it ('Shows loading text initially', () => {
         const { getByText } = renderLaunchesAll();
 
-        expect( getByText(/Loading launches.../i) ).toBeInTheDocument();
+        expect( getByText(/Loading data.../i) ).toBeInTheDocument();
     })
 
     it ('After loading it displays first 10 flights', async () => {

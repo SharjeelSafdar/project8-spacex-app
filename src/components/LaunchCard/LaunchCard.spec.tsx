@@ -23,7 +23,7 @@ describe ('Tests for <LaunchCard />', () => {
     it ('Initially displays "Loading..."', () => {
         const { getByText } = renderLaunchCard(100);
 
-        expect( getByText(/loading launch data.../i) ).toBeInTheDocument();
+        expect( getByText(/Loading data.../i) ).toBeInTheDocument();
     });
     
     it ('Displays data of a single flight', async () => {

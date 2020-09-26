@@ -23,7 +23,7 @@ describe ('Tests for <RecentLaunches />', () => {
     it ('Initially displays "Loading..."', () => {
         const { getByText } = renderRecentLaunches();
 
-        expect( getByText(/Loading recent launches.../i) ).toBeInTheDocument();
+        expect( getByText(/Loading data.../i) ).toBeInTheDocument();
     });
 
     it ('Displays LaunchCards for 3 most recent launches', async () => {
