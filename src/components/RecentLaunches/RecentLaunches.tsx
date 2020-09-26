@@ -20,7 +20,7 @@ export const RecentLaunches: React.FC<{}> = () => {
     return (
         <div className={styles.container}>
             <h3 className={styles.heading}>Recent Launches</h3>
-            <div className={styles.launches}>
+            <div className={styles.launches} style={{paddingBottom: (loading || !!error) ? '20px' : '0px'}}>
                 {loading ? 'Loading recent launches...' : error ? 'Error fetching recent launches...' :
                     ids.map( id => id && <LaunchCard flightNumber={id} key={id} /> )
                 }
