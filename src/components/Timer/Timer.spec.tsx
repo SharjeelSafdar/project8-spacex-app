@@ -43,20 +43,13 @@ describe ('Tests for <Timer /> component', () => {
     })
 
     it ('Timer countdowns correctly', async () => {
-        const { getByTestId } = render(<Timer secondsLeft={3} />);
+        const { getByTestId } = render(<Timer secondsLeft={2} />);
 
         const days = getByTestId('days');
         const hours = getByTestId('hours');
         const minutes = getByTestId('minutes');
         const seconds = getByTestId('seconds');
         
-        expect( days ).toHaveTextContent('00');
-        expect( hours ).toHaveTextContent('00');
-        expect( minutes ).toHaveTextContent('00');
-        expect( seconds ).toHaveTextContent('03');
-
-        await waitForDomChange();
-
         expect( days ).toHaveTextContent('00');
         expect( hours ).toHaveTextContent('00');
         expect( minutes ).toHaveTextContent('00');
