@@ -78,9 +78,12 @@
 }
 
 .detailsLink {
-    color: #00f;
+    color: whitesmoke;
     text-decoration: underline;
     cursor: pointer;
+}
+.detailsLink a {
+    color: whitesmoke;
 }
 .videoLink, .articleLink {
     font-size: 1.4em;
