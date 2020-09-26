@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 // GraphQL Query Hook
 import { useNextLaunchQuery } from '../../api/index';
 // Components
@@ -7,7 +8,7 @@ import { Timer } from '../components';
 import styles from './NextLaunch.module.css';
 
 export const NextLaunch: React.FC<{}> = () => {
-	const { data, loading, error } = useNextLaunchQuery();
+    const { data, loading, error } = useNextLaunchQuery();
 
     return (
         <>
@@ -33,7 +34,13 @@ export const NextLaunch: React.FC<{}> = () => {
                                     {`From: ${data?.launches && data.launches[0] &&
                                         data.launches[0].launch_site?.site_name_long} `}
                                 </p>
-                                <p>More details</p>
+                                <p className={styles.moreDetails}>
+                                    <Link to={`/launches-all/${
+                                        data?.launches && data.launches[0]?.flight_number
+                                    }`}>
+                                        More details
+                                    </Link>
+                                </p>
                             </div>
                         </div>
                         <p className={styles.remaining}>Time Remaining</p>

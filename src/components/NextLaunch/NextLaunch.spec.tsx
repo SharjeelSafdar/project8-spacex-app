@@ -1,4 +1,5 @@
 import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
 import { render, cleanup, waitForDomChange } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing'
 import { NextLaunch } from './NextLaunch';
@@ -6,7 +7,9 @@ import { mockedResponses } from '../../api/mockedResponses';
 
 const renderNextLaunch = () => render(
     <MockedProvider mocks={mockedResponses} addTypename={false} >
-        <NextLaunch />
+        <MemoryRouter>
+            <NextLaunch />
+        </MemoryRouter>
     </MockedProvider>
 );
 
@@ -38,13 +41,13 @@ describe('Tests for <NextLaunch /> component', () => {
         const minutes = Math.max(Math.floor((secondsLeft - days * 86400 - hours * 3600) / 60), 0);
         const seconds = Math.max(secondsLeft - days * 86400 - hours * 3600 - minutes * 60, 0);
 
-        expect( getByTestId('days') ).toHaveTextContent(`${(days < 10) ? `0${days}` : days}`)
-        expect( getByText(/days/i) ).toBeInTheDocument();
-        expect( getByTestId('hours') ).toHaveTextContent(`${(hours < 10) ? `0${hours}` : hours}`)
-        expect( getByText(/hours/i) ).toBeInTheDocument();
-        expect( getByTestId('minutes') ).toHaveTextContent(`${(minutes < 10) ? `0${minutes}` : minutes}`)
-        expect( getByText(/minutes/i) ).toBeInTheDocument();
-        expect( getByTestId('seconds') ).toHaveTextContent(`${(seconds < 10) ? `0${seconds}` : seconds}`)
-        expect( getByText(/seconds/i) ).toBeInTheDocument();
+        expect(getByTestId('days')).toHaveTextContent(`${(days < 10) ? `0${days}` : days}`)
+        expect(getByText(/days/i)).toBeInTheDocument();
+        expect(getByTestId('hours')).toHaveTextContent(`${(hours < 10) ? `0${hours}` : hours}`)
+        expect(getByText(/hours/i)).toBeInTheDocument();
+        expect(getByTestId('minutes')).toHaveTextContent(`${(minutes < 10) ? `0${minutes}` : minutes}`)
+        expect(getByText(/minutes/i)).toBeInTheDocument();
+        expect(getByTestId('seconds')).toHaveTextContent(`${(seconds < 10) ? `0${seconds}` : seconds}`)
+        expect(getByText(/seconds/i)).toBeInTheDocument();
     })
 })
