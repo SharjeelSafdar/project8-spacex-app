@@ -116,29 +116,29 @@ describe('Tests for <App /> component', () => {
 		const { getByTestId } = renderApp();
 		expect( getByTestId('home-page') ).toBeInTheDocument();
 		
-		act( () => fireEvent.click(getByTestId('launches')) );
+		act( () => {fireEvent.click(getByTestId('launches'))} );
 		expect( getByTestId('launches-all-page') ).toBeInTheDocument();
 
-		act( () => fireEvent.click(getByTestId('rockets')) );
+		act( () => {fireEvent.click(getByTestId('rockets'))} );
 		expect( getByTestId('rockets-page') ).toBeInTheDocument();
 
-		act( () => fireEvent.click(getByTestId('history')) );
+		act( () => {fireEvent.click(getByTestId('history'))} );
 		expect( getByTestId('history-page') ).toBeInTheDocument();
 
-		act( () => fireEvent.click(getByTestId('about')) );
+		act( () => {fireEvent.click(getByTestId('about'))} );
 		expect( getByTestId('about-page') ).toBeInTheDocument();
 
-		act( () => fireEvent.click(getByTestId('home')) );
+		act( () => {fireEvent.click(getByTestId('home'))} );
 		expect( getByTestId('home-page') ).toBeInTheDocument();
 	})
 
 	test('Links to <LaunchDetails /> in <LaunchesAll /> work correctly', async () => {
 		const { getAllByTestId, getByTestId, getByText } = renderApp();
-		act( () => fireEvent.click(getByTestId('launches')) )
+		act( () => {fireEvent.click(getByTestId('launches'))} )
 		await waitForDomChange();
 		
 		const moreBtns = getAllByTestId('more-details');
-		act( () => fireEvent.click(moreBtns[0]) );
+		act( () => {fireEvent.click(moreBtns[0])} );
 		expect( getByTestId('launch-details-page') ).toBeInTheDocument();
 		await waitForDomChange();
 		expect( getByText('Flight #1') ).toBeInTheDocument();
@@ -146,13 +146,13 @@ describe('Tests for <App /> component', () => {
 
 	test('2. Links to <LaunchDetails /> in <LaunchesAll /> work correctly', async () => {
 		const { getAllByTestId, getByTestId, getByText } = renderApp();
-		act( () => fireEvent.click(getByTestId('launches-link')) )
+		act( () => {fireEvent.click(getByTestId('launches-link'))} )
 		await waitForDomChange();
-		act( () => fireEvent.click(getByTestId('past')) );
+		act( () => {fireEvent.click(getByTestId('past'))} );
 		await waitForDomChange();
 		
 		const moreBtns = getAllByTestId('more-details');
-		act( () => fireEvent.click(moreBtns[1]) );
+		act( () => {fireEvent.click(moreBtns[1])} );
 		expect( getByTestId('launch-details-page') ).toBeInTheDocument();
 		await waitForDomChange();
 		expect( getByText('Flight #101') ).toBeInTheDocument();
@@ -160,11 +160,11 @@ describe('Tests for <App /> component', () => {
 	
 	test('Links to <RocketDetails /> in <Rockets /> work correctly', async () => {
 		const { getAllByTestId, getByTestId, getByText } = renderApp();
-		act( () => fireEvent.click(getByTestId('rockets-link')) )
+		act( () => {fireEvent.click(getByTestId('rockets-link'))} )
 		await waitForDomChange();
 		
 		const moreBtns = getAllByTestId('more-rocket-details');
-		act( () => fireEvent.click(moreBtns[1]) );
+		act( () => {fireEvent.click(moreBtns[1])} );
 		expect( getByTestId('rocket-details-page') ).toBeInTheDocument();
 		await waitForDomChange();
 		expect( getByText('Falcon 9') ).toBeInTheDocument();
@@ -172,11 +172,11 @@ describe('Tests for <App /> component', () => {
 
 	test('2. Links to <RocketDetails /> in <Rockets /> work correctly', async () => {
 		const { getAllByTestId, getByTestId, getByText } = renderApp();
-		act( () => fireEvent.click(getByTestId('rockets')) )
+		act( () => {fireEvent.click(getByTestId('rockets'))} )
 		await waitForDomChange();
 		
 		const moreBtns = getAllByTestId('more-rocket-details');
-		act( () => fireEvent.click(moreBtns[3]) );
+		act( () => {fireEvent.click(moreBtns[3])} );
 		expect( getByTestId('rocket-details-page') ).toBeInTheDocument();
 		await waitForDomChange();
 		expect( getByText('Starship') ).toBeInTheDocument();

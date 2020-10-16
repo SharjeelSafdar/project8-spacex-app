@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render, cleanup, waitForDomChange, fireEvent } from '@testing-library/react';
+import { render, cleanup, waitForDomChange, fireEvent, act } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
 import { mockedResponses } from '../../api/mockedResponses';
 import { LaunchesAll } from './LaunchesAll';
@@ -84,7 +84,7 @@ describe ('Tests for <LaunchesAll />', () => {
         await waitForDomChange();
         expect( getByText('Flight #1') ).toBeInTheDocument();
 
-        fireEvent.click( getByTestId('desc') );
+        act( () => {fireEvent.click( getByTestId('desc') )} );
         await waitForDomChange();
 
         [ 115, 112, 110, 109, 108, 107, 106, 105, 104, 103 ].forEach(
@@ -97,11 +97,10 @@ describe ('Tests for <LaunchesAll />', () => {
         await waitForDomChange();
         expect( getByText('Flight #1') ).toBeInTheDocument();
 
-        fireEvent.click( getByTestId('desc') );
+        act( () => {fireEvent.click( getByTestId('desc') )});
         await waitForDomChange();
         expect( getByText('Flight #115') ).toBeInTheDocument();
-
-        fireEvent.click( getByTestId('asc') );
+        act(() => {fireEvent.click( getByTestId('asc') )});
         for (let iii = 1; iii <= 10; ++iii)
             expect( getByText(`Flight #${iii}`) ).toBeInTheDocument();
     })
@@ -122,7 +121,7 @@ describe ('Tests for <LaunchesAll />', () => {
         expect( getByText('Flight #1') ).toBeInTheDocument();
         expect( moreBtn ).toBeInTheDocument();
 
-        fireEvent.click( getByTestId('more') );
+        act(() => {fireEvent.click( getByTestId('more') )});
         await waitForDomChange();
         [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 95, 96, 97, 98, 99 ].forEach(
             flightNum => expect( getByText(`Flight #${flightNum}`) ).toBeInTheDocument()
@@ -137,9 +136,9 @@ describe ('Tests for <LaunchesAll />', () => {
         expect( getByText('Flight #1') ).toBeInTheDocument();
 
         // Press more button until no more results are left.
-        fireEvent.click( moreBtn );
-        fireEvent.click( moreBtn );
-        fireEvent.click( moreBtn );
+        act(() => {fireEvent.click( moreBtn )});
+        act(() => {fireEvent.click( moreBtn )});
+        act(() => {fireEvent.click( moreBtn )});
         
         expect( moreBtn ).toHaveTextContent('No more results');
         expect( moreBtn ).toBeDisabled();
@@ -151,14 +150,14 @@ describe ('Tests for <LaunchesAll />', () => {
         const moreBtn = getByTestId('more');
         
         // Show 10 launches in descending order
-        fireEvent.click( getByTestId('desc') );
+        act(() => {fireEvent.click( getByTestId('desc') )});
         await waitForDomChange();
         // 20 launches
-        fireEvent.click( moreBtn );
+        act(() => {fireEvent.click( moreBtn )});
         // 30 launches
-        fireEvent.click( moreBtn );
+        act(() => {fireEvent.click( moreBtn )});
         // 33 launches
-        fireEvent.click( moreBtn );
+        act(() => {fireEvent.click( moreBtn )});
         await waitForDomChange();
         [ 115, 103, 102, 14, 13, 4, 3, 2, 1 ].forEach(
             flightNum => expect( getByText(`Flight #${flightNum}`) ).toBeInTheDocument()
@@ -172,7 +171,7 @@ describe ('Tests for <LaunchesAll />', () => {
         const { getByText, getByTestId } = renderLaunchesAll();
         await waitForDomChange();
 
-        fireEvent.click( getByTestId('past') );
+        act(() => {fireEvent.click( getByTestId('past') )});
         await waitForDomChange();
 
         [ 102, 101, 100, 99, 98, 97, 96, 95, 15, 14 ].forEach(
@@ -185,7 +184,7 @@ describe ('Tests for <LaunchesAll />', () => {
         await waitForDomChange();
 
         // Display past launches
-        fireEvent.click( getByTestId('past') );
+        act(() => {fireEvent.click( getByTestId('past') )});
         await waitForDomChange();
 
         // More button is available
@@ -194,10 +193,10 @@ describe ('Tests for <LaunchesAll />', () => {
         expect( moreBtn ).toBeEnabled();
 
         // 20 past launches
-        fireEvent.click( moreBtn );
+        act(() => {fireEvent.click( moreBtn )});
 
         // 23 past launches
-        fireEvent.click( moreBtn );
+        act(() => {fireEvent.click( moreBtn )});
         await waitForDomChange();
         [ 102, 14, 1 ].forEach(
             flightNum => expect( getByText(`Flight #${flightNum}`) ).toBeInTheDocument()
@@ -213,19 +212,19 @@ describe ('Tests for <LaunchesAll />', () => {
         await waitForDomChange();
 
         // Display past launches
-        fireEvent.click( getByTestId('past') );
+        act(() => {fireEvent.click( getByTestId('past') )});
         await waitForDomChange();
         [ 102, 14 ].forEach(
             flightNum => expect( getByText(`Flight #${flightNum}`) ).toBeInTheDocument()
         );
 
-        fireEvent.click( getByTestId('asc') );
+        act(() => {fireEvent.click( getByTestId('asc') )});
         await waitForDomChange();
         [ 1, 10 ].forEach(
             flightNum => expect( getByText(`Flight #${flightNum}`) ).toBeInTheDocument()
         );
 
-        fireEvent.click( getByTestId('desc') );
+        act(() => {fireEvent.click( getByTestId('desc') )});
         [ 102, 14 ].forEach(
             flightNum => expect( getByText(`Flight #${flightNum}`) ).toBeInTheDocument()
         );
@@ -235,7 +234,7 @@ describe ('Tests for <LaunchesAll />', () => {
         const { getByText, getByTestId } = renderLaunchesAll();
         await waitForDomChange();
 
-        fireEvent.click( getByTestId('upcoming') );
+        act(() => {fireEvent.click( getByTestId('upcoming') )});
         await waitForDomChange();
 
         [ 103, 115 ].forEach(
@@ -248,7 +247,7 @@ describe ('Tests for <LaunchesAll />', () => {
         await waitForDomChange();
 
         // Display past launches
-        fireEvent.click( getByTestId('upcoming') );
+        act(() => {fireEvent.click( getByTestId('upcoming') )});
         await waitForDomChange();
 
         // More results button shouldn't be available, now.
@@ -262,19 +261,19 @@ describe ('Tests for <LaunchesAll />', () => {
         await waitForDomChange();
 
         // Display past launches
-        fireEvent.click( getByTestId('upcoming') );
+        act(() => {fireEvent.click( getByTestId('upcoming') )});
         await waitForDomChange();
         [ 103, 115 ].forEach(
             flightNum => expect( getByText(`Flight #${flightNum}`) ).toBeInTheDocument()
         );
 
-        fireEvent.click( getByTestId('desc') );
+        act(() => {fireEvent.click( getByTestId('desc') )});
         await waitForDomChange();
         [ 115, 103 ].forEach(
             flightNum => expect( getByText(`Flight #${flightNum}`) ).toBeInTheDocument()
         );
 
-        fireEvent.click( getByTestId('asc') );
+        act(() => {fireEvent.click( getByTestId('asc') )});
         [ 103, 115 ].forEach(
             flightNum => expect( getByText(`Flight #${flightNum}`) ).toBeInTheDocument()
         );
@@ -284,7 +283,7 @@ describe ('Tests for <LaunchesAll />', () => {
         const { getByText, getByTestId } = renderLaunchesAll();
         await waitForDomChange();
 
-        fireEvent.click( getByTestId('past') );
+        act(() => {fireEvent.click( getByTestId('past') )});
         expect( getByText('Past Launches') ).toBeInTheDocument();
     })
 
@@ -292,7 +291,7 @@ describe ('Tests for <LaunchesAll />', () => {
         const { getByText, getByTestId } = renderLaunchesAll();
         await waitForDomChange();
 
-        fireEvent.click( getByTestId('upcoming') );
+        act(() => {fireEvent.click( getByTestId('upcoming') )});
         expect( getByText('Upcoming Launches') ).toBeInTheDocument();
     })
 
@@ -322,7 +321,7 @@ describe ('Tests for <LaunchesAll />', () => {
         const moreBtn = getByTestId('more');
         expect( moreBtn ).toHaveStyle('display: block');
         
-        fireEvent.click( moreBtn );
+        act(() => {fireEvent.click( moreBtn )});
         expect( moreBtn ).toHaveStyle('display: none');
         
         await waitForDomChange();
